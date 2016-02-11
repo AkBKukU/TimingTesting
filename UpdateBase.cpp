@@ -13,10 +13,14 @@
 
 UpdateBase::UpdateBase()
 {
+	// Initalize indexes to next and previous items
 	itemNext = 0;
 	itemPrev = 0;
 
+	// Get an ID
 	itemId = UpdateManager::assignID();
+
+	// Register default fixed update
 	this->registerFixedUpdate();
 }
 
@@ -27,12 +31,12 @@ uint32_t UpdateBase::getID()
 
 void UpdateBase::registerCustomUpdate(uint16_t delayMS, uint32_t delayS)
 {
-
+	// TODO
 }
 
 void UpdateBase::unRegisterCustomUpdate()
 {
-
+	// TODO
 }
 
 void UpdateBase::registerFixedUpdate()
@@ -42,16 +46,18 @@ void UpdateBase::registerFixedUpdate()
 
 void UpdateBase::unRegisterFixedUpdate()
 {
-
+	// TODO
 }
 
 uint16_t UpdateBase::getDelayMilli()
 {
-
+	// TODO
+	return 0;
 }
 
 uint32_t UpdateBase::getDelayS()
 {
-
+	// TODO
+	return 0;
 }
 

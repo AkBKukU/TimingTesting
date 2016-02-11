@@ -13,14 +13,25 @@
 #include <UpdateBaseEmpty.h>
 
 
+// Root for 100Hz updates
 UpdateBaseEmpty *UpdateManager::fixedRoot;
+
+// Root for custom update frequencies
 UpdateBaseEmpty *UpdateManager::customRoot;
+
+// Index to traverse linked lists
 UpdateBase *UpdateManager::index = 0;
 
+// Test to call fixedUpdates
+bool UpdateManager::fixedUpdate = false;
+
+// Counter to assign IDs to new objects
 uint32_t UpdateManager::idCounter = 0;
 
+// Number of milliSeconds since last second
 uint16_t UpdateManager::timeMilliSeconds = 0; // `timeSeconds++` after 1000.
 
+// Runtime in seconds
 uint32_t UpdateManager::timeSeconds = 0; // Good for 136 years of runtime
 
 UpdateManager::UpdateManager()
@@ -40,40 +51,53 @@ uint32_t UpdateManager::assignID()
 
 void UpdateManager::update()
 {
+	// Inrement the MilliSecond counter
 	timeMilliSeconds++;
+
+	// Wrap counter at one second
 	if (timeMilliSeconds >= 1000)
 	{
 		timeMilliSeconds = 0;
 		timeSeconds++;
 	}
 
+	// Every 10ms set the runFixedUpdates function to run
 	if(!(timeMilliSeconds % 10))
 	{
-		UpdateManager::runFixedUpdates();
+		fixedUpdate = true;
 	}
 
 }
 
 uint16_t UpdateManager::getTimeMilli()
 {
-
+	return timeMilliSeconds;
 }
 
 uint32_t UpdateManager::getTimeS()
 {
-
+	return timeSeconds;
 }
+
 
 void UpdateManager::runFixedUpdates()
 {
-	// Start from begining
-	UpdateManager::index = UpdateManager::fixedRoot;
-
-	// Find last item
-	while (UpdateManager::index->itemNext)
+	// Check if it is time to run the updates
+	if(fixedUpdate)
 	{
-		UpdateManager::index->updateFixed();
-		UpdateManager::index = UpdateManager::index->itemNext;
+		// Reset update
+		fixedUpdate = false;
+
+		// Start from begining
+		UpdateManager::index = UpdateManager::fixedRoot;
+
+		// Cycle through all items
+		// TODO - Avoid calling update on root object
+		while (UpdateManager::index->itemNext)
+		{
+			UpdateManager::index->updateFixed();
+			UpdateManager::index = UpdateManager::index->itemNext;
+		}
 	}
 }
 

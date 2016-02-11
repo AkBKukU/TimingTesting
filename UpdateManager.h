@@ -16,7 +16,9 @@
 class UpdateManager
 {
 public:
+
 	UpdateManager();
+
 	static void init();
 	static uint32_t assignID();
 
@@ -27,13 +29,16 @@ public:
 
 	static void registerFixedUpdate(UpdateBase *newItem);
 
+	static void runFixedUpdates();
+
 private:
 
-	static void runFixedUpdates();
 
 	static UpdateBase *index;
 	static UpdateBaseEmpty *fixedRoot;
 	static UpdateBaseEmpty *customRoot;
+
+	static bool fixedUpdate;
 
 	static uint32_t idCounter;
 
