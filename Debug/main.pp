@@ -19,6 +19,8 @@ main.obj: ../driverlib/gpio.h
 main.obj: ../driverlib/interrupt.h
 main.obj: ../UpdateManager.h
 main.obj: ../UpdateBase.h
+main.obj: ../UpdateBaseEmpty.h
+main.obj: ../UpdateBase.h
 main.obj: /home/akbkuku/Desktop/TimingTesting/LEDBlink.h
 main.obj: /home/akbkuku/Desktop/TimingTesting/UpdateBase.h
 
@@ -40,6 +42,8 @@ main.obj: /home/akbkuku/Desktop/TimingTesting/UpdateBase.h
 ../driverlib/gpio.h: 
 ../driverlib/interrupt.h: 
 ../UpdateManager.h: 
+../UpdateBase.h: 
+../UpdateBaseEmpty.h: 
 ../UpdateBase.h: 
 /home/akbkuku/Desktop/TimingTesting/LEDBlink.h: 
 /home/akbkuku/Desktop/TimingTesting/UpdateBase.h: 

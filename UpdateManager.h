@@ -8,6 +8,7 @@
 #include <stdbool.h>
 
 #include "UpdateBase.h"
+#include "UpdateBaseEmpty.h"
 
 #ifndef UPDATEMANAGER_H_
 #define UPDATEMANAGER_H_
@@ -31,8 +32,8 @@ private:
 	static void runFixedUpdates();
 
 	static UpdateBase *index;
-	static UpdateBase *fixedRoot;
-	static UpdateBase *customRoot;
+	static UpdateBaseEmpty *fixedRoot;
+	static UpdateBaseEmpty *customRoot;
 
 	static uint32_t idCounter;
 

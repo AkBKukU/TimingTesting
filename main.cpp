@@ -25,6 +25,8 @@ int main(void)
 
 	uint32_t test = led->getID();
 
+	while(1)
+	{}
 
 	return test;
 }

@@ -10,6 +10,8 @@ UpdateBase.obj: /opt/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include/_lock.h
 UpdateBase.obj: ../UpdateBase.h
 UpdateBase.obj: ../UpdateManager.h
 UpdateBase.obj: ../UpdateBase.h
+UpdateBase.obj: ../UpdateBaseEmpty.h
+UpdateBase.obj: ../UpdateBase.h
 
 ../UpdateBase.cpp: 
 /opt/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include/stdint.h: 
@@ -20,4 +22,6 @@ UpdateBase.obj: ../UpdateBase.h
 /opt/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include/_lock.h: 
 ../UpdateBase.h: 
 ../UpdateManager.h: 
+../UpdateBase.h: 
+../UpdateBaseEmpty.h: 
 ../UpdateBase.h: 

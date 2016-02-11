@@ -13,8 +13,8 @@
 #include <UpdateBaseEmpty.h>
 
 
-UpdateBase *UpdateManager::fixedRoot = 0;
-UpdateBase *UpdateManager::customRoot = 0;
+UpdateBaseEmpty *UpdateManager::fixedRoot;
+UpdateBaseEmpty *UpdateManager::customRoot;
 UpdateBase *UpdateManager::index = 0;
 
 uint32_t UpdateManager::idCounter = 0;
