@@ -25,13 +25,11 @@
 
 #include "tickCounter.h"
 
-uint32_t msUptime;
-extern void UpdateManageraddTimeMilli();
+extern void UpdateManagerupdateTime();
 
-void TickCounter() {
-	msUptime++;
-
-	UpdateManageraddTimeMilli();
+void TickCounter()
+{
+	UpdateManagerupdateTime();
 }
 
 void TickCounterInit() {
@@ -40,9 +38,4 @@ void TickCounterInit() {
 	IntMasterEnable();
 	SysTickIntEnable();
 	SysTickEnable();
-	msUptime = 1;
 }
-uint32_t millis(void) {
-	return msUptime;
-}
-

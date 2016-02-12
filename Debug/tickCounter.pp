@@ -18,6 +18,9 @@ tickCounter.obj: ../driverlib/gpio.h
 tickCounter.obj: ../driverlib/interrupt.h
 tickCounter.obj: ../driverlib/systick.h
 tickCounter.obj: ../tickCounter.h
+tickCounter.obj: ../inc/hw_ssi.h
+tickCounter.obj: ../driverlib/ssi.h
+tickCounter.obj: ../driverlib/pwm.h
 
 ../tickCounter.c: 
 /opt/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include/stdint.h: 
@@ -37,3 +40,6 @@ tickCounter.obj: ../tickCounter.h
 ../driverlib/interrupt.h: 
 ../driverlib/systick.h: 
 ../tickCounter.h: 
+../inc/hw_ssi.h: 
+../driverlib/ssi.h: 
+../driverlib/pwm.h: 

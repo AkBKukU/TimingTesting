@@ -6,8 +6,8 @@
 CPP_SRCS += \
 ../LEDBlink.cpp \
 ../UpdateBase.cpp \
-../UpdateBaseEmpty.cpp \
 ../UpdateManager.cpp \
+../UpdateRoot.cpp \
 ../main.cpp 
 
 CMD_SRCS += \
@@ -20,8 +20,8 @@ C_SRCS += \
 OBJS += \
 ./LEDBlink.obj \
 ./UpdateBase.obj \
-./UpdateBaseEmpty.obj \
 ./UpdateManager.obj \
+./UpdateRoot.obj \
 ./main.obj \
 ./tickCounter.obj \
 ./tm4c123gh6pm_startup_ccs.obj 
@@ -29,8 +29,8 @@ OBJS += \
 CPP_DEPS += \
 ./LEDBlink.pp \
 ./UpdateBase.pp \
-./UpdateBaseEmpty.pp \
 ./UpdateManager.pp \
+./UpdateRoot.pp \
 ./main.pp 
 
 C_DEPS += \
@@ -40,8 +40,8 @@ C_DEPS += \
 CPP_DEPS__QUOTED += \
 "LEDBlink.pp" \
 "UpdateBase.pp" \
-"UpdateBaseEmpty.pp" \
 "UpdateManager.pp" \
+"UpdateRoot.pp" \
 "main.pp" 
 
 C_DEPS__QUOTED += \
@@ -51,8 +51,8 @@ C_DEPS__QUOTED += \
 OBJS__QUOTED += \
 "LEDBlink.obj" \
 "UpdateBase.obj" \
-"UpdateBaseEmpty.obj" \
 "UpdateManager.obj" \
+"UpdateRoot.obj" \
 "main.obj" \
 "tickCounter.obj" \
 "tm4c123gh6pm_startup_ccs.obj" 
@@ -60,8 +60,8 @@ OBJS__QUOTED += \
 CPP_SRCS__QUOTED += \
 "../LEDBlink.cpp" \
 "../UpdateBase.cpp" \
-"../UpdateBaseEmpty.cpp" \
 "../UpdateManager.cpp" \
+"../UpdateRoot.cpp" \
 "../main.cpp" 
 
 C_SRCS__QUOTED += \

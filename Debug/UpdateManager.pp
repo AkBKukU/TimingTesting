@@ -9,10 +9,9 @@ UpdateManager.obj: /opt/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include/linkage
 UpdateManager.obj: /opt/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include/_lock.h
 UpdateManager.obj: ../UpdateManager.h
 UpdateManager.obj: ../UpdateBase.h
-UpdateManager.obj: ../UpdateBaseEmpty.h
+UpdateManager.obj: ../UpdateRoot.h
 UpdateManager.obj: ../UpdateBase.h
 UpdateManager.obj: ../UpdateBase.h
-UpdateManager.obj: /home/akbkuku/Desktop/TimingTesting/UpdateBaseEmpty.h
 
 ../UpdateManager.cpp: 
 /opt/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include/stdint.h: 
@@ -23,7 +22,6 @@ UpdateManager.obj: /home/akbkuku/Desktop/TimingTesting/UpdateBaseEmpty.h
 /opt/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include/_lock.h: 
 ../UpdateManager.h: 
 ../UpdateBase.h: 
-../UpdateBaseEmpty.h: 
+../UpdateRoot.h: 
 ../UpdateBase.h: 
 ../UpdateBase.h: 
-/home/akbkuku/Desktop/TimingTesting/UpdateBaseEmpty.h: 

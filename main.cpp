@@ -3,11 +3,12 @@
 
 #include "tickCounter.h"
 #include "UpdateManager.h"
-#include <LEDBlink.h>
+#include "LEDBlink.h"
 
 //UpdateManager UM;
 
-LEDBlink *led = 0;
+LEDBlink *ledRED = 0;
+LEDBlink *ledGREEN = 0;
 /*
  * main.c
  */
@@ -24,15 +25,20 @@ int main(void)
 	UpdateManager::init();
 
 	// Initialize the LED Blinker
-	led = new LEDBlink();
+	ledRED = new LEDBlink();
+	ledRED->initLED(SYSCTL_PERIPH_GPIOF, GPIO_PORTF_BASE,GPIO_PIN_1);
+	ledRED->unRegisterFixedUpdate();
+	ledRED->off();
+	ledRED->registerCustomUpdate(1, 0);
 
-	// Test if the ID was set
-	uint32_t test = led->getID();
+	ledGREEN = new LEDBlink();
+	ledGREEN->initLED(SYSCTL_PERIPH_GPIOF, GPIO_PORTF_BASE,GPIO_PIN_2);
 
-	while(test)
+	// Loop fixed updates to allow it to run as needed
+	while(1)
 	{
-		UpdateManager::runFixedUpdates();
+		UpdateManager::update();
 	}
 
-	return test;
+	return 0;
 }

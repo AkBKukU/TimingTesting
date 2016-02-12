@@ -1,20 +1,25 @@
 /*
- * UpdateBaseEmpty.cpp
+ * UpdateRoot.cpp
  *
  *  Created on: Feb 10, 2016
  *      Author: mcudev
  */
 
-#include <UpdateBaseEmpty.h>
+#include "UpdateRoot.h"
 
 #include "UpdateBase.h"
-UpdateBaseEmpty::UpdateBaseEmpty()
+UpdateRoot::UpdateRoot()
 {
 	// TODO Auto-generated constructor stub
 
 }
 
-void UpdateBaseEmpty::updateFixed()
+void UpdateRoot::updateFixed()
+{
+
+}
+
+void UpdateRoot::updateCustom()
 {
 
 }

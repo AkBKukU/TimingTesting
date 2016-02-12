@@ -15,6 +15,7 @@
 #include "driverlib/ssi.h"
 #include "driverlib/interrupt.h"
 #include "driverlib/pwm.h"
+
 /*
  * LEDBlink.cpp
  *
@@ -22,28 +23,77 @@
  *      Author: mcudev
  */
 
-#include <LEDBlink.h>
+#include "LEDBlink.h"
 #include "UpdateBase.h"
+
+
+
 
 LEDBlink::LEDBlink()
 {
 	// TODO Auto-generated constructor stub
 
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
-	GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE , GPIO_PIN_1 );
-	GPIOPinWrite(GPIO_PORTF_BASE , GPIO_PIN_1 , GPIO_PIN_1 );
+	counter = 0;
+	stage = 0;
+	align = 2;
 }
 
 
+void LEDBlink::initLED(uint32_t peri, uint32_t port, uint32_t pin)
+{
+	LEDport = port;
+	LEDpin = pin;
+	SysCtlPeripheralEnable(peri);
+	GPIOPinTypeGPIOOutput(port , pin );
+	GPIOPinWrite(port , pin , pin );
+}
+
 void LEDBlink::updateFixed()
 {
-
-	uint32_t pinStatus = GPIOPinRead(GPIO_PORTF_BASE , GPIO_PIN_1 );
+	uint32_t pinStatus = GPIOPinRead(LEDport , LEDpin );
 	if(pinStatus)
 	{
-		GPIOPinWrite(GPIO_PORTF_BASE , GPIO_PIN_1 , GPIO_PIN_1 );
+		GPIOPinWrite(LEDport , LEDpin , 0 );
 	}else{
 
-		GPIOPinWrite(GPIO_PORTF_BASE , GPIO_PIN_1 , 0 );
+		GPIOPinWrite(LEDport , LEDpin , LEDpin );
 	}
+}
+
+void LEDBlink::updateCustom()
+{
+	if(align)
+	{
+		align--;
+	}else{
+		if(getCustomMS() == 15)
+		{
+			setCustomUpdate(1, 0);
+		}
+		if(counter == 5)
+		{
+			setCustomUpdate(15, 0);
+
+			GPIOPinWrite(LEDport , LEDpin , 0 );
+			counter = 0;
+		}else{
+
+			uint32_t pinStatus = GPIOPinRead(LEDport , LEDpin );
+			if(pinStatus)
+			{
+				GPIOPinWrite(LEDport , LEDpin , 0 );
+			}else{
+
+				GPIOPinWrite(LEDport , LEDpin , LEDpin );
+			}
+			counter++;
+
+		}
+	}
+
+}
+
+void LEDBlink::off()
+{
+	GPIOPinWrite(LEDport , LEDpin , 0 );
 }

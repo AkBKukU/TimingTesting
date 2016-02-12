@@ -19,8 +19,8 @@ LEDBlink.obj: ../driverlib/gpio.h
 LEDBlink.obj: ../driverlib/ssi.h
 LEDBlink.obj: ../driverlib/interrupt.h
 LEDBlink.obj: ../driverlib/pwm.h
-LEDBlink.obj: /home/akbkuku/Desktop/TimingTesting/LEDBlink.h
-LEDBlink.obj: /home/akbkuku/Desktop/TimingTesting/UpdateBase.h
+LEDBlink.obj: ../LEDBlink.h
+LEDBlink.obj: ../UpdateBase.h
 LEDBlink.obj: ../UpdateBase.h
 
 ../LEDBlink.cpp: 
@@ -42,6 +42,6 @@ LEDBlink.obj: ../UpdateBase.h
 ../driverlib/ssi.h: 
 ../driverlib/interrupt.h: 
 ../driverlib/pwm.h: 
-/home/akbkuku/Desktop/TimingTesting/LEDBlink.h: 
-/home/akbkuku/Desktop/TimingTesting/UpdateBase.h: 
+../LEDBlink.h: 
+../UpdateBase.h: 
 ../UpdateBase.h: 

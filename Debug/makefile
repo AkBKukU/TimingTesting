@@ -7,8 +7,8 @@ CG_TOOL_ROOT := /opt/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2
 ORDERED_OBJS += \
 "./LEDBlink.obj" \
 "./UpdateBase.obj" \
-"./UpdateBaseEmpty.obj" \
 "./UpdateManager.obj" \
+"./UpdateRoot.obj" \
 "./main.obj" \
 "./tickCounter.obj" \
 "./tm4c123gh6pm_startup_ccs.obj" \
@@ -182,7 +182,7 @@ all: TimingTesting.out
 TimingTesting.out: $(OBJS) $(CMD_SRCS) $(LDS_SRCS) $(LIB_SRCS) $(A_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: ARM Linker'
-	"/opt/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 --abi=eabi -me -g --gcc --define=ccs="ccs" --define=PART_TM4C123GH6PM --display_error_number --diag_warning=225 --diag_wrap=off -z -m"TimingTesting.map" --heap_size=0 --stack_size=512 -i"/opt/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/lib" -i"/opt/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="TimingTesting_linkInfo.xml" --rom_model -o "TimingTesting.out" $(ORDERED_OBJS) $(A_SRCS)
+	"/opt/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 --abi=eabi -me -g --gcc --define=ccs="ccs" --define=PART_TM4C123GH6PM --display_error_number --diag_warning=225 --diag_wrap=off -z -m"TimingTesting.map" --heap_size=512 --stack_size=1024 -i"/opt/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/lib" -i"/opt/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="TimingTesting_linkInfo.xml" --rom_model -o "TimingTesting.out" $(ORDERED_OBJS) $(A_SRCS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -195,10 +195,10 @@ TimingTesting.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
-	-$(RM) "LEDBlink.pp" "UpdateBase.pp" "UpdateBaseEmpty.pp" "UpdateManager.pp" "main.pp" 
+	-$(RM) "LEDBlink.pp" "UpdateBase.pp" "UpdateManager.pp" "UpdateRoot.pp" "main.pp" 
 	-$(RM) "tickCounter.pp" "tm4c123gh6pm_startup_ccs.pp" "driverlib/adc.pp" "driverlib/aes.pp" "driverlib/can.pp" "driverlib/comp.pp" "driverlib/cpu.pp" "driverlib/crc.pp" "driverlib/des.pp" "driverlib/eeprom.pp" "driverlib/emac.pp" "driverlib/epi.pp" "driverlib/flash.pp" "driverlib/fpu.pp" "driverlib/gpio.pp" "driverlib/hibernate.pp" "driverlib/i2c.pp" "driverlib/interrupt.pp" "driverlib/lcd.pp" "driverlib/mpu.pp" "driverlib/onewire.pp" "driverlib/pwm.pp" "driverlib/qei.pp" "driverlib/shamd5.pp" "driverlib/ssi.pp" "driverlib/sw_crc.pp" "driverlib/sysctl.pp" "driverlib/sysexc.pp" "driverlib/systick.pp" "driverlib/timer.pp" "driverlib/uart.pp" "driverlib/udma.pp" "driverlib/usb.pp" "driverlib/watchdog.pp" 
 	-$(RM) "driverlib/epi_workaround_ccs.pp" 
-	-$(RM) "LEDBlink.obj" "UpdateBase.obj" "UpdateBaseEmpty.obj" "UpdateManager.obj" "main.obj" "tickCounter.obj" "tm4c123gh6pm_startup_ccs.obj" "driverlib/adc.obj" "driverlib/aes.obj" "driverlib/can.obj" "driverlib/comp.obj" "driverlib/cpu.obj" "driverlib/crc.obj" "driverlib/des.obj" "driverlib/eeprom.obj" "driverlib/emac.obj" "driverlib/epi.obj" "driverlib/epi_workaround_ccs.obj" "driverlib/flash.obj" "driverlib/fpu.obj" "driverlib/gpio.obj" "driverlib/hibernate.obj" "driverlib/i2c.obj" "driverlib/interrupt.obj" "driverlib/lcd.obj" "driverlib/mpu.obj" "driverlib/onewire.obj" "driverlib/pwm.obj" "driverlib/qei.obj" "driverlib/shamd5.obj" "driverlib/ssi.obj" "driverlib/sw_crc.obj" "driverlib/sysctl.obj" "driverlib/sysexc.obj" "driverlib/systick.obj" "driverlib/timer.obj" "driverlib/uart.obj" "driverlib/udma.obj" "driverlib/usb.obj" "driverlib/watchdog.obj" 
+	-$(RM) "LEDBlink.obj" "UpdateBase.obj" "UpdateManager.obj" "UpdateRoot.obj" "main.obj" "tickCounter.obj" "tm4c123gh6pm_startup_ccs.obj" "driverlib/adc.obj" "driverlib/aes.obj" "driverlib/can.obj" "driverlib/comp.obj" "driverlib/cpu.obj" "driverlib/crc.obj" "driverlib/des.obj" "driverlib/eeprom.obj" "driverlib/emac.obj" "driverlib/epi.obj" "driverlib/epi_workaround_ccs.obj" "driverlib/flash.obj" "driverlib/fpu.obj" "driverlib/gpio.obj" "driverlib/hibernate.obj" "driverlib/i2c.obj" "driverlib/interrupt.obj" "driverlib/lcd.obj" "driverlib/mpu.obj" "driverlib/onewire.obj" "driverlib/pwm.obj" "driverlib/qei.obj" "driverlib/shamd5.obj" "driverlib/ssi.obj" "driverlib/sw_crc.obj" "driverlib/sysctl.obj" "driverlib/sysexc.obj" "driverlib/systick.obj" "driverlib/timer.obj" "driverlib/uart.obj" "driverlib/udma.obj" "driverlib/usb.obj" "driverlib/watchdog.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

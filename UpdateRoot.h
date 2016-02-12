@@ -1,5 +1,5 @@
 /*
- * UpdateBaseEmpty.h
+ * UpdateRoot.h
  *
  *  Created on: Feb 10, 2016
  *      Author: mcudev
@@ -10,11 +10,14 @@
 
 #include "UpdateBase.h"
 
-class UpdateBaseEmpty: public UpdateBase {
+class UpdateRoot: public UpdateBase {
 public:
-	typedef UpdateBase super;
-	UpdateBaseEmpty();
+	UpdateRoot();
+	//~UpdateBaseEmpty();
 	void updateFixed();
+	void updateCustom();
+
+protected:
 };
 
 #endif /* UPDATEBASEEMPTY_H_ */

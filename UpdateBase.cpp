@@ -10,6 +10,10 @@
 #include "UpdateBase.h"
 
 #include "UpdateManager.h"
+#include "UpdateRoot.h"
+#include <typeinfo>       // operator typeid
+
+// TODO Abstract out a linked list item only class
 
 UpdateBase::UpdateBase()
 {
@@ -17,11 +21,20 @@ UpdateBase::UpdateBase()
 	itemNext = 0;
 	itemPrev = 0;
 
+	customMS = 0;
+	customS = 0;
+
 	// Get an ID
 	itemId = UpdateManager::assignID();
 
 	// Register default fixed update
 	this->registerFixedUpdate();
+}
+
+UpdateBase::~UpdateBase()
+{
+	itemId = 0;
+	UpdateBase::unRegisterFixedUpdate();
 }
 
 uint32_t UpdateBase::getID()
@@ -31,12 +44,43 @@ uint32_t UpdateBase::getID()
 
 void UpdateBase::registerCustomUpdate(uint16_t delayMS, uint32_t delayS)
 {
-	// TODO
+	setCustomUpdate(delayMS, delayS);
+	registerCustomUpdate();
+}
+
+void UpdateBase::registerCustomUpdate()
+{
+	resetCustomUpdate();
+	UpdateManager::registerCustomUpdate(this);
+}
+
+void UpdateBase::setCustomUpdate(uint16_t newDelayMS, uint32_t newDelayS)
+{
+	customMS = newDelayMS - 1 ;
+	customS = newDelayS;
+
+	resetCustomUpdate();
+}
+
+void UpdateBase::resetCustomUpdate()
+{
+	delayMS = customMS;
+	delayS = customS;
+}
+
+uint16_t UpdateBase::getCustomMS()
+{
+	return customMS + 1;
+}
+
+uint32_t UpdateBase::getCustomS()
+{
+	return customS;
 }
 
 void UpdateBase::unRegisterCustomUpdate()
 {
-	// TODO
+	UpdateManager::unRegisterCustomUpdate(this);
 }
 
 void UpdateBase::registerFixedUpdate()
@@ -46,7 +90,7 @@ void UpdateBase::registerFixedUpdate()
 
 void UpdateBase::unRegisterFixedUpdate()
 {
-	// TODO
+	UpdateManager::unRegisterFixedUpdate(this);
 }
 
 uint16_t UpdateBase::getDelayMilli()

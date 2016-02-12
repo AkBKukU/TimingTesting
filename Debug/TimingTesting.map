@@ -1,35 +1,37 @@
 ******************************************************************************
                   TI ARM Linker Unix v5.2.2                    
 ******************************************************************************
->> Linked Thu Feb 11 11:05:51 2016
+>> Linked Fri Feb 12 15:43:58 2016
 
 OUTPUT FILE NAME:   <TimingTesting.out>
-ENTRY POINT SYMBOL: "_c_int00"  address: 000029fd
+ENTRY POINT SYMBOL: "_c_int00"  address: 0000410d
 
 
 MEMORY CONFIGURATION
 
          name            origin    length      used     unused   attr    fill
 ----------------------  --------  ---------  --------  --------  ----  --------
-  FLASH                 00000000   00040000  0000338c  0003cc74  R  X
-  SRAM                  20000000   00008000  000004c0  00007b40  RW X
+  FLASH                 00000000   00040000  00004faa  0003b056  R  X
+  SRAM                  20000000   00008000  000008bc  00007744  RW X
 
 
 SEGMENT ALLOCATION MAP
 
 run origin  load origin   length   init length attrs members
 ----------  ----------- ---------- ----------- ----- -------
-00000000    00000000    00003390   00003390    r-x
+00000000    00000000    00004fb0   00004fb0    r-x
   00000000    00000000    0000026c   0000026c    r-- .intvecs
-  0000026c    0000026c    00002a04   00002a04    r-x .text
-  00002c70    00002c70    000006bc   000006bc    r-- .const
-  00003330    00003330    00000060   00000060    r-- .cinit
-20000000    20000000    000004c0   00000000    rw-
+  0000026c    0000026c    000041ea   000041ea    r-x .text
+  00004458    00004458    000007f8   000007f8    r-- .const
+  00004c50    00004c50    000000d4   000000d4    r-- .ARM.extab
+  00004d28    00004d28    00000060   00000060    r-- .cinit
+  00004d88    00004d88    00000228   00000228    r-- .ARM.exidx
+20000000    20000000    000008bc   00000000    rw-
   20000000    20000000    0000026c   00000000    rw- .vtable
-  2000026c    2000026c    00000200   00000000    rw- .stack
-  2000046c    2000046c    0000003c   00000000    rw- .data
-  200004a8    200004a8    00000010   00000000    rw- .bss
-  200004b8    200004b8    00000008   00000000    rw- .sysmem
+  2000026c    2000026c    00000400   00000000    rw- .stack
+  2000066c    2000066c    00000004   00000000    rw- .bss
+  20000670    20000670    00000200   00000000    rw- .sysmem
+  20000870    20000870    0000004c   00000000    rw- .data
 
 
 SECTION ALLOCATION MAP
@@ -40,93 +42,136 @@ section   page    origin      length       input sections
 .intvecs   0    00000000    0000026c     
                   00000000    0000026c     tm4c123gh6pm_startup_ccs.obj (.intvecs)
 
-.text      0    0000026c    00002a04     
+.text      0    0000026c    000041ea     
                   0000026c    00000ef0     sysctl.obj (.text)
                   0000115c    00000bbc     gpio.obj (.text)
-                  00001d18    000003dc     rtsv7M4_T_le_v4SPD16_eabi.lib : memory.obj (.text)
-                  000020f4    000003c0     interrupt.obj (.text)
-                  000024b4    0000012c     UpdateManager.obj (.text)
-                  000025e0    000000bc     rtsv7M4_T_le_v4SPD16_eabi.lib : typeinfo_.obj (.text)
-                  0000269c    0000009c                                   : memcpy_t2.obj (.text)
-                  00002738    00000088     systick.obj (.text)
-                  000027c0    00000084     UpdateBase.obj (.text)
-                  00002844    0000007a     rtsv7M4_T_le_v4SPD16_eabi.lib : memset_t2.obj (.text)
-                  000028be    00000002                                   : newhandler.obj (.text)
-                  000028c0    0000006c                                   : autoinit.obj (.text)
-                  0000292c    0000006a                                   : copy_decompress_rle.obj (.text)
-                  00002996    00000002     --HOLE-- [fill = 0]
-                  00002998    00000064     LEDBlink.obj (.text)
-                  000029fc    00000050     rtsv7M4_T_le_v4SPD16_eabi.lib : boot.obj (.text)
-                  00002a4c    0000004c     main.obj (.text)
-                  00002a98    0000004c     rtsv7M4_T_le_v4SPD16_eabi.lib : cpy_tbl.obj (.text)
-                  00002ae4    00000044                                   : exit.obj (.text)
-                  00002b28    00000040     tickCounter.obj (.text)
-                  00002b68    0000003e     cpu.obj (.text)
-                  00002ba6    00000002     --HOLE-- [fill = 0]
-                  00002ba8    00000030     rtsv7M4_T_le_v4SPD16_eabi.lib : new_.obj (.text)
-                  00002bd8    00000024     UpdateBaseEmpty.obj (.text)
-                  00002bfc    00000018     rtsv7M4_T_le_v4SPD16_eabi.lib : args_main.obj (.text)
-                  00002c14    00000014                                   : _lock.obj (.text)
-                  00002c28    0000000e                                   : copy_decompress_none.obj (.text:decompress:none)
-                  00002c36    0000000c                                   : copy_zero_init.obj (.text:decompress:ZI)
-                  00002c42    0000000c     tm4c123gh6pm_startup_ccs.obj (.text)
-                  00002c4e    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : delete.obj (.text)
-                  00002c56    00000006     sysctl.obj (.text:SysCtlDelay)
-                  00002c5c    00000006     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_rle.obj (.text:decompress:rle24)
-                  00002c62    00000006                                   : pure_virt.obj (.text)
-                  00002c68    00000004                                   : error.obj (.text)
-                  00002c6c    00000004                                   : pre_init.obj (.text)
+                  00001d18    000005d8     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : rtti.obj (.text)
+                  000022f0    00000508                                      : tdeh_cpp_abi.obj (.text)
+                  000027f8    000003dc                                      : memory.obj (.text)
+                  00002bd4    000003d4                                      : tdeh_pr_arm.obj (.text)
+                  00002fa8    000003c0     interrupt.obj (.text)
+                  00003368    00000290     UpdateManager.obj (.text)
+                  000035f8    00000256     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : tdeh_pr_common.obj (.text)
+                  0000384e    00000002                                      : tdeh_cpp_abi.obj (.text:_ZNSt13bad_exceptionD1Ev)
+                  00003850    00000168     LEDBlink.obj (.text)
+                  000039b8    00000158     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : tdeh_unwinder.obj (.text)
+                  00003b10    00000140     UpdateBase.obj (.text)
+                  00003c50    00000138     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : typeinfo_.obj (.text)
+                  00003d88    000000a0     main.obj (.text)
+                  00003e28    0000009c     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : memcpy_t2.obj (.text)
+                  00003ec4    00000088     systick.obj (.text)
+                  00003f4c    0000007a     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : memset_t2.obj (.text)
+                  00003fc6    00000002                                      : newhandler.obj (.text:_ZNSt9bad_allocD1Ev)
+                  00003fc8    0000006c                                      : autoinit.obj (.text)
+                  00004034    0000006c                                      : tdeh_uwentry_t2.obj (.text)
+                  000040a0    0000006a                                      : copy_decompress_rle.obj (.text)
+                  0000410a    00000002                                      : newhandler.obj (.text:_ZNSt9exceptionD1Ev)
+                  0000410c    00000050                                      : boot.obj (.text)
+                  0000415c    0000004c                                      : cpy_tbl.obj (.text)
+                  000041a8    00000044                                      : bsearch.obj (.text)
+                  000041ec    00000044                                      : exit.obj (.text)
+                  00004230    0000003e     cpu.obj (.text)
+                  0000426e    00000002     --HOLE-- [fill = 0]
+                  00004270    00000030     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : newhandler.obj (.text)
+                  000042a0    0000002c     UpdateRoot.obj (.text)
+                  000042cc    0000002c     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : new_.obj (.text)
+                  000042f8    00000028     tickCounter.obj (.text)
+                  00004320    00000020     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : args_main.obj (.text)
+                  00004340    00000016     UpdateRoot.obj (.text:_ZN10UpdateRootD0Ev)
+                  00004356    00000016     LEDBlink.obj (.text:_ZN8LEDBlinkD0Ev)
+                  0000436c    00000014     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : _lock.obj (.text)
+                  00004380    00000010                                      : tdeh_cpp_abi.obj (.text:_ZNSt13bad_exceptionC1EPKc)
+                  00004390    00000010                                      : newhandler.obj (.text:_ZNSt9bad_allocC1EPKc)
+                  000043a0    00000010                                      : typeinfo_.obj (.text:_ZNSt9exceptionC1ERKS_)
+                  000043b0    0000000e     UpdateRoot.obj (.text:_ZN10UpdateRootD1Ev)
+                  000043be    0000000e     LEDBlink.obj (.text:_ZN8LEDBlinkD1Ev)
+                  000043cc    0000000e     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : copy_decompress_none.obj (.text:decompress:none)
+                  000043da    00000002     --HOLE-- [fill = 0]
+                  000043dc    0000000c                                      : newhandler.obj (.text:_ZNSt9exceptionC1EPKc)
+                  000043e8    0000000c                                      : copy_zero_init.obj (.text:decompress:ZI)
+                  000043f4    0000000c     tm4c123gh6pm_startup_ccs.obj (.text)
+                  00004400    0000000a     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : delete.obj (.text)
+                  0000440a    0000000a                                      : pure_virt.obj (.text)
+                  00004414    00000008                                      : tdeh_cpp_abi.obj (.text:_ZNSt13bad_exceptionD0Ev)
+                  0000441c    00000008                                      : newhandler.obj (.text:_ZNSt9bad_allocD0Ev)
+                  00004424    00000008                                      : newhandler.obj (.text:_ZNSt9exceptionD0Ev)
+                  0000442c    00000008                                      : error.obj (.text)
+                  00004434    00000008                                      : tdeh_init.obj (.text)
+                  0000443c    00000006     sysctl.obj (.text:SysCtlDelay)
+                  00004442    00000006     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : typeinfo_.obj (.text:_ZNSt9exceptionaSERKS_)
+                  00004448    00000006                                      : copy_decompress_rle.obj (.text:decompress:rle24)
+                  0000444e    00000004                                      : newhandler.obj (.text:_ZNKSt9exception4whatEv)
+                  00004452    00000004                                      : pre_init.obj (.text)
 
-.const     0    00002c70    000006bc     
-                  00002c70    00000120     sysctl.obj (.const:g_pppui32XTALtoVCO)
-                  00002d90    000000c0     gpio.obj (.const:g_ppui32GPIOIntMapBlizzard)
-                  00002e50    000000c0     gpio.obj (.const:g_ppui32GPIOIntMapSnowflake)
-                  00002f10    0000009c     interrupt.obj (.const:g_pui32Regs)
-                  00002fac    00000090     gpio.obj (.const:g_pui32GPIOBaseAddrs)
-                  0000303c    00000070     interrupt.obj (.const)
-                  000030ac    0000006c     sysctl.obj (.const:g_pui32Xtals)
-                  00003118    00000030     sysctl.obj (.const:g_sXTALtoMEMTIM)
-                  00003148    00000028     rtsv7M4_T_le_v4SPD16_eabi.lib : typeinfo_.obj (.const:.typeinfo:_ZTSN10__cxxabiv123__fundamental_type_infoE)
-                  00003170    00000025                                   : typeinfo_.obj (.const:.typeinfo:_ZTSN10__cxxabiv120__si_class_type_infoE)
-                  00003195    00000024                                   : typeinfo_.obj (.const:.typeinfo:_ZTSN10__cxxabiv119__pointer_type_infoE)
-                  000031b9    00000022                                   : typeinfo_.obj (.const:.typeinfo:_ZTSN10__cxxabiv117__class_type_infoE)
-                  000031db    00000022                                   : typeinfo_.obj (.const:.typeinfo:_ZTSN10__cxxabiv117__pbase_type_infoE)
-                  000031fd    00000012     UpdateBaseEmpty.obj (.const:.typeinfo:_ZTS15UpdateBaseEmpty)
-                  0000320f    00000001     --HOLE-- [fill = 0]
-                  00003210    00000010     rtsv7M4_T_le_v4SPD16_eabi.lib : typeinfo_.obj (.const:.typeinfo:_ZTIPKe)
-                  00003220    00000010                                   : typeinfo_.obj (.const:_ZTVN10__cxxabiv117__class_type_infoE)
-                  00003230    00000010                                   : typeinfo_.obj (.const:_ZTVN10__cxxabiv119__pointer_type_infoE)
-                  00003240    00000010                                   : typeinfo_.obj (.const:_ZTVN10__cxxabiv120__si_class_type_infoE)
-                  00003250    00000010                                   : typeinfo_.obj (.const:_ZTVN10__cxxabiv123__fundamental_type_infoE)
-                  00003260    0000000d     LEDBlink.obj (.const:.typeinfo:_ZTS10UpdateBase)
-                  0000326d    0000000d     rtsv7M4_T_le_v4SPD16_eabi.lib : typeinfo_.obj (.const:.typeinfo:_ZTSSt9type_info)
-                  0000327a    00000002                                   : typeinfo_.obj (.const:.typeinfo:_ZTSe)
-                  0000327c    0000000c     UpdateBaseEmpty.obj (.const:.typeinfo:_ZTI15UpdateBaseEmpty)
-                  00003288    0000000c     LEDBlink.obj (.const:.typeinfo:_ZTI8LEDBlink)
-                  00003294    0000000c     rtsv7M4_T_le_v4SPD16_eabi.lib : typeinfo_.obj (.const:.typeinfo:_ZTIN10__cxxabiv117__class_type_infoE)
-                  000032a0    0000000c                                   : typeinfo_.obj (.const:.typeinfo:_ZTIN10__cxxabiv117__pbase_type_infoE)
-                  000032ac    0000000c                                   : typeinfo_.obj (.const:.typeinfo:_ZTIN10__cxxabiv119__pointer_type_infoE)
-                  000032b8    0000000c                                   : typeinfo_.obj (.const:.typeinfo:_ZTIN10__cxxabiv120__si_class_type_infoE)
-                  000032c4    0000000c                                   : typeinfo_.obj (.const:.typeinfo:_ZTIN10__cxxabiv123__fundamental_type_infoE)
-                  000032d0    0000000c     UpdateBase.obj (.const:_ZTV10UpdateBase)
-                  000032dc    0000000c     UpdateBaseEmpty.obj (.const:_ZTV15UpdateBaseEmpty)
-                  000032e8    0000000c     LEDBlink.obj (.const:_ZTV8LEDBlink)
-                  000032f4    0000000a     LEDBlink.obj (.const:.typeinfo:_ZTS8LEDBlink)
-                  000032fe    00000002     --HOLE-- [fill = 0]
-                  00003300    00000008     LEDBlink.obj (.const:.typeinfo:_ZTI10UpdateBase)
-                  00003308    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : typeinfo_.obj (.const:.typeinfo:_ZTISt9type_info)
-                  00003310    00000008                                   : typeinfo_.obj (.const:.typeinfo:_ZTIe)
-                  00003318    00000008     gpio.obj (.const)
-                  00003320    00000008     sysctl.obj (.const)
-                  00003328    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : typeinfo_.obj (.const:.typeinfo:_ZTSPKe)
+.const     0    00004458    000007f8     
+                  00004458    00000120     sysctl.obj (.const:g_pppui32XTALtoVCO)
+                  00004578    000000c0     gpio.obj (.const:g_ppui32GPIOIntMapBlizzard)
+                  00004638    000000c0     gpio.obj (.const:g_ppui32GPIOIntMapSnowflake)
+                  000046f8    0000009c     interrupt.obj (.const:g_pui32Regs)
+                  00004794    00000090     gpio.obj (.const:g_pui32GPIOBaseAddrs)
+                  00004824    00000070     interrupt.obj (.const)
+                  00004894    0000006c     sysctl.obj (.const:g_pui32Xtals)
+                  00004900    00000030     sysctl.obj (.const:g_sXTALtoMEMTIM)
+                  00004930    00000028     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : typeinfo_.obj (.const:.typeinfo:_ZTSN10__cxxabiv123__fundamental_type_infoE)
+                  00004958    00000026                                      : typeinfo_.obj (.const:.typeinfo:_ZTSN10__cxxabiv121__vmi_class_type_infoE)
+                  0000497e    00000025                                      : typeinfo_.obj (.const:.typeinfo:_ZTSN10__cxxabiv120__si_class_type_infoE)
+                  000049a3    00000024                                      : typeinfo_.obj (.const:.typeinfo:_ZTSN10__cxxabiv119__pointer_type_infoE)
+                  000049c7    00000022                                      : typeinfo_.obj (.const:.typeinfo:_ZTSN10__cxxabiv117__class_type_infoE)
+                  000049e9    00000022                                      : typeinfo_.obj (.const:.typeinfo:_ZTSN10__cxxabiv117__pbase_type_infoE)
+                  00004a0b    00000001     --HOLE-- [fill = 0]
+                  00004a0c    00000018     UpdateBase.obj (.const:_ZTV10UpdateBase)
+                  00004a24    00000018     UpdateRoot.obj (.const:_ZTV10UpdateRoot)
+                  00004a3c    00000018     LEDBlink.obj (.const:_ZTV8LEDBlink)
+                  00004a54    00000014     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : typeinfo_.obj (.const:_ZTVSt10bad_typeid)
+                  00004a68    00000014                                      : tdeh_cpp_abi.obj (.const:_ZTVSt13bad_exception)
+                  00004a7c    00000014                                      : typeinfo_.obj (.const:_ZTVSt8bad_cast)
+                  00004a90    00000014                                      : newhandler.obj (.const:_ZTVSt9bad_alloc)
+                  00004aa4    00000014                                      : newhandler.obj (.const:_ZTVSt9exception)
+                  00004ab8    00000012                                      : tdeh_cpp_abi.obj (.const:.typeinfo:_ZTSSt13bad_exception)
+                  00004aca    00000002                                      : typeinfo_.obj (.const:.typeinfo:_ZTSe)
+                  00004acc    00000010                                      : typeinfo_.obj (.const:.typeinfo:_ZTIPKe)
+                  00004adc    00000010                                      : typeinfo_.obj (.const:_ZTVN10__cxxabiv117__class_type_infoE)
+                  00004aec    00000010                                      : typeinfo_.obj (.const:_ZTVN10__cxxabiv119__pointer_type_infoE)
+                  00004afc    00000010                                      : typeinfo_.obj (.const:_ZTVN10__cxxabiv120__si_class_type_infoE)
+                  00004b0c    00000010                                      : typeinfo_.obj (.const:_ZTVN10__cxxabiv123__fundamental_type_infoE)
+                  00004b1c    0000000f                                      : typeinfo_.obj (.const:.typeinfo:_ZTSSt10bad_typeid)
+                  00004b2b    0000000d     UpdateBase.obj (.const:.typeinfo:_ZTS10UpdateBase)
+                  00004b38    0000000d     UpdateRoot.obj (.const:.typeinfo:_ZTS10UpdateRoot)
+                  00004b45    0000000d     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : new_.obj (.const:.typeinfo:_ZTSSt9bad_alloc)
+                  00004b52    0000000d                                      : new_.obj (.const:.typeinfo:_ZTSSt9exception)
+                  00004b5f    0000000d                                      : typeinfo_.obj (.const:.typeinfo:_ZTSSt9type_info)
+                  00004b6c    0000000c     UpdateRoot.obj (.const:.typeinfo:_ZTI10UpdateRoot)
+                  00004b78    0000000c     LEDBlink.obj (.const:.typeinfo:_ZTI8LEDBlink)
+                  00004b84    0000000c     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : typeinfo_.obj (.const:.typeinfo:_ZTIN10__cxxabiv117__class_type_infoE)
+                  00004b90    0000000c                                      : typeinfo_.obj (.const:.typeinfo:_ZTIN10__cxxabiv117__pbase_type_infoE)
+                  00004b9c    0000000c                                      : typeinfo_.obj (.const:.typeinfo:_ZTIN10__cxxabiv119__pointer_type_infoE)
+                  00004ba8    0000000c                                      : typeinfo_.obj (.const:.typeinfo:_ZTIN10__cxxabiv120__si_class_type_infoE)
+                  00004bb4    0000000c                                      : typeinfo_.obj (.const:.typeinfo:_ZTIN10__cxxabiv121__vmi_class_type_infoE)
+                  00004bc0    0000000c                                      : typeinfo_.obj (.const:.typeinfo:_ZTIN10__cxxabiv123__fundamental_type_infoE)
+                  00004bcc    0000000c                                      : typeinfo_.obj (.const:.typeinfo:_ZTISt10bad_typeid)
+                  00004bd8    0000000c                                      : tdeh_cpp_abi.obj (.const:.typeinfo:_ZTISt13bad_exception)
+                  00004be4    0000000c                                      : typeinfo_.obj (.const:.typeinfo:_ZTISt8bad_cast)
+                  00004bf0    0000000c                                      : new_.obj (.const:.typeinfo:_ZTISt9bad_alloc)
+                  00004bfc    0000000c                                      : typeinfo_.obj (.const:.typeinfo:_ZTSSt8bad_cast)
+                  00004c08    0000000a     LEDBlink.obj (.const:.typeinfo:_ZTS8LEDBlink)
+                  00004c12    00000002     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : tdeh_cpp_abi.obj (.const:.typeinfo:_ZTSv)
+                  00004c14    00000008     UpdateBase.obj (.const:.typeinfo:_ZTI10UpdateBase)
+                  00004c1c    00000008     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : new_.obj (.const:.typeinfo:_ZTISt9exception)
+                  00004c24    00000008                                      : typeinfo_.obj (.const:.typeinfo:_ZTISt9type_info)
+                  00004c2c    00000008                                      : typeinfo_.obj (.const:.typeinfo:_ZTIe)
+                  00004c34    00000008                                      : tdeh_cpp_abi.obj (.const:.typeinfo:_ZTIv)
+                  00004c3c    00000008     gpio.obj (.const)
+                  00004c44    00000008     sysctl.obj (.const)
+                  00004c4c    00000004     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : typeinfo_.obj (.const:.typeinfo:_ZTSPKe)
 
-.cinit     0    00003330    00000060     
-                  00003330    00000029     (.cinit..data.load) [load image, compression = rle]
-                  00003359    00000003     --HOLE-- [fill = 0]
-                  0000335c    0000000c     (__TI_handler_table)
-                  00003368    00000008     (.cinit..bss.load) [load image, compression = zero_init]
-                  00003370    00000008     (.cinit..vtable.load) [load image, compression = zero_init]
-                  00003378    00000018     (__TI_cinit_table)
+.cinit     0    00004d28    00000060     
+                  00004d28    00000027     (.cinit..data.load) [load image, compression = rle]
+                  00004d4f    00000001     --HOLE-- [fill = 0]
+                  00004d50    0000000c     (__TI_handler_table)
+                  00004d5c    00000004     --HOLE-- [fill = 0]
+                  00004d60    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  00004d68    00000008     (.cinit..vtable.load) [load image, compression = zero_init]
+                  00004d70    00000018     (__TI_cinit_table)
 
 .init_array 
 *          0    00000000    00000000     UNINITIALIZED
@@ -134,45 +179,86 @@ section   page    origin      length       input sections
 .vtable    0    20000000    0000026c     UNINITIALIZED
                   20000000    0000026c     interrupt.obj (.vtable)
 
-.stack     0    2000026c    00000200     UNINITIALIZED
-                  2000026c    00000200     --HOLE--
+.stack     0    2000026c    00000400     UNINITIALIZED
+                  2000026c    00000400     --HOLE--
 
-.data      0    2000046c    0000003c     UNINITIALIZED
-                  2000046c    00000014     UpdateManager.obj (.data)
-                  20000480    0000000c     rtsv7M4_T_le_v4SPD16_eabi.lib : memory.obj (.data)
-                  2000048c    00000008                                   : _lock.obj (.data)
-                  20000494    00000008                                   : exit.obj (.data)
-                  2000049c    00000004     main.obj (.data)
-                  200004a0    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : stkdepth_vars.obj (.data)
-                  200004a4    00000004                                   : vars.obj (.data)
-
-.TI.persistent 
-*          0    2000046c    00000000     UNINITIALIZED
-
-.bss       0    200004a8    00000010     UNINITIALIZED
-                  200004a8    00000004     (.common:_ZN13UpdateManager10customRootE)
-                  200004ac    00000004     (.common:_ZN13UpdateManager9fixedRootE)
-                  200004b0    00000004     (.common:_ZSt16__dummy_typeinfo)
-                  200004b4    00000004     (.common:msUptime)
+.bss       0    2000066c    00000004     UNINITIALIZED
+                  2000066c    00000004     (.common:_ZSt16__dummy_typeinfo)
 
 .TI.noinit 
-*          0    200004a8    00000000     UNINITIALIZED
+*          0    2000066c    00000000     UNINITIALIZED
 
-.sysmem    0    200004b8    00000008     UNINITIALIZED
-                  200004b8    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : memory.obj (.sysmem)
+.sysmem    0    20000670    00000200     UNINITIALIZED
+                  20000670    00000008     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : memory.obj (.sysmem)
+                  20000678    000001f8     --HOLE--
+
+.data      0    20000870    0000004c     UNINITIALIZED
+                  20000870    0000001c     UpdateManager.obj (.data)
+                  2000088c    0000000c     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : memory.obj (.data)
+                  20000898    00000008     main.obj (.data)
+                  200008a0    00000008     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : _lock.obj (.data)
+                  200008a8    00000008                                      : exit.obj (.data)
+                  200008b0    00000004                                      : stkdepth_vars.obj (.data)
+                  200008b4    00000004                                      : tdeh_cpp_abi.obj (.data)
+                  200008b8    00000004                                      : vars.obj (.data)
+
+.TI.persistent 
+*          0    20000870    00000000     UNINITIALIZED
+
+.ARM.extab 
+*          0    00004c50    000000d4     
+                  00004c50    00000030     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : tdeh_cpp_abi.obj (.ARM.extab)
+                  00004c80    0000001c                                      : tdeh_cpp_abi.obj (.ARM.extab)
+                  00004c9c    00000018     UpdateManager.obj (.ARM.extab)
+                  00004cb4    00000018     main.obj (.ARM.extab)
+                  00004ccc    00000018     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : new_.obj (.ARM.extab)
+                  00004ce4    00000010                                      : delete.obj (.ARM.extab)
+                  00004cf4    00000010                                      : tdeh_cpp_abi.obj (.ARM.extab)
+                  00004d04    00000010                                      : tdeh_cpp_abi.obj (.ARM.extab)
+                  00004d14    00000010                                      : tdeh_cpp_abi.obj (.ARM.extab)
+
+.ARM.exidx 
+*          0    00004d88    00000228     
+                  00004d88    00000008     (.ARM.exidx.text:sysctl.obj)
+                  00004d90    00000050     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : rtti.obj (.ARM.exidx)
+                  00004de0    00000088                                      : tdeh_cpp_abi.obj (.ARM.exidx)
+                  00004e68    00000008     (.ARM.exidx.text:rtsv7M4_T_le_v4SPD16_eabi_eh.lib<memory.obj>)
+                  00004e70    00000030                                      : tdeh_pr_arm.obj (.ARM.exidx)
+                  00004ea0    00000008     (.ARM.exidx.text:interrupt.obj)
+                  00004ea8    00000028     UpdateManager.obj (.ARM.exidx)
+                  00004ed0    00000008     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : tdeh_pr_common.obj (.ARM.exidx)
+                  00004ed8    00000008     (.ARM.exidx.text:_ZNSt13bad_exceptionD1Ev:rtsv7M4_T_le_v4SPD16_eabi_eh.lib<tdeh_cpp_abi.obj>)
+                  00004ee0    00000010     LEDBlink.obj (.ARM.exidx)
+                  00004ef0    00000020     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : tdeh_unwinder.obj (.ARM.exidx)
+                  00004f10    00000028     UpdateBase.obj (.ARM.exidx)
+                  00004f38    00000008     (.ARM.exidx.text:rtsv7M4_T_le_v4SPD16_eabi_eh.lib<typeinfo_.obj>)
+                  00004f40    00000008     main.obj (.ARM.exidx)
+                  00004f48    00000008     (.ARM.exidx.text:rtsv7M4_T_le_v4SPD16_eabi_eh.lib<memcpy_t2.obj>)
+                  00004f50    00000008     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : newhandler.obj (.ARM.exidx)
+                  00004f58    00000008                                      : new_.obj (.ARM.exidx)
+                  00004f60    00000008     (.ARM.exidx.text:tickCounter.obj)
+                  00004f68    00000008     UpdateRoot.obj (.ARM.exidx)
+                  00004f70    00000008     (.ARM.exidx.text:rtsv7M4_T_le_v4SPD16_eabi_eh.lib<_lock.obj>)
+                  00004f78    00000008     UpdateRoot.obj (.ARM.exidx)
+                  00004f80    00000008     (.ARM.exidx.text:decompress:none:rtsv7M4_T_le_v4SPD16_eabi_eh.lib<copy_decompress_none.obj>)
+                  00004f88    00000008     rtsv7M4_T_le_v4SPD16_eabi_eh.lib : delete.obj (.ARM.exidx)
+                  00004f90    00000008                                      : pure_virt.obj (.ARM.exidx)
+                  00004f98    00000008     (.ARM.exidx.text:_ZNSt13bad_exceptionD0Ev:rtsv7M4_T_le_v4SPD16_eabi_eh.lib<tdeh_cpp_abi.obj>)
+                  00004fa0    00000008                                      : error.obj (.ARM.exidx)
+                  00004fa8    00000008     (.ARM.exidx.text:SysCtlDelay:sysctl.obj)
 
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 00003378 records: 3, size/record: 8, table size: 24
-	.data: load addr=00003330, load size=00000029 bytes, run addr=2000046c, run size=0000003c bytes, compression=rle
-	.bss: load addr=00003368, load size=00000008 bytes, run addr=200004a8, run size=00000010 bytes, compression=zero_init
-	.vtable: load addr=00003370, load size=00000008 bytes, run addr=20000000, run size=0000026c bytes, compression=zero_init
+__TI_cinit_table @ 00004d70 records: 3, size/record: 8, table size: 24
+	.data: load addr=00004d28, load size=00000027 bytes, run addr=20000870, run size=0000004c bytes, compression=rle
+	.bss: load addr=00004d60, load size=00000008 bytes, run addr=2000066c, run size=00000004 bytes, compression=zero_init
+	.vtable: load addr=00004d68, load size=00000008 bytes, run addr=20000000, run size=0000026c bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 0000335c records: 3, size/record: 4, table size: 12
+__TI_handler_table @ 00004d50 records: 3, size/record: 4, table size: 12
 	index: 0, handler: __TI_zero_init
 	index: 1, handler: __TI_decompress_rle24
 	index: 2, handler: __TI_decompress_none
@@ -180,617 +266,865 @@ __TI_handler_table @ 0000335c records: 3, size/record: 4, table size: 12
 
 GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
 
-address   name                                                 
--------   ----                                                 
-00002ae5  C$$EXIT                                              
-00002b9d  CPUbasepriGet                                        
-00002b8f  CPUbasepriSet                                        
-00002b69  CPUcpsid                                             
-00002b7f  CPUcpsie                                             
-00002b75  CPUprimask                                           
-00002b8b  CPUwfi                                               
-00001cf3  GPIOADCTriggerDisable                                
-00001cd5  GPIOADCTriggerEnable                                 
-00001cb7  GPIODMATriggerDisable                                
-00001c99  GPIODMATriggerEnable                                 
-0000121b  GPIODirModeGet                                       
-000011bf  GPIODirModeSet                                       
-0000178f  GPIOIntClear                                         
-00001753  GPIOIntDisable                                       
-00001739  GPIOIntEnable                                        
-000017a3  GPIOIntRegister                                      
-0000176d  GPIOIntStatus                                        
-0000130b  GPIOIntTypeGet                                       
-00001267  GPIOIntTypeSet                                       
-000017c1  GPIOIntUnregister                                    
-000015e7  GPIOPadConfigGet                                     
-000013a9  GPIOPadConfigSet                                     
-00001c3b  GPIOPinConfigure                                     
-000017db  GPIOPinRead                                          
-00001813  GPIOPinTypeADC                                       
-00001837  GPIOPinTypeCAN                                       
-00001c07  GPIOPinTypeCIR                                       
-0000185b  GPIOPinTypeComparator                                
-0000187f  GPIOPinTypeComparatorOutput                          
-000018a3  GPIOPinTypeEPI                                       
-000018c7  GPIOPinTypeEthernetLED                               
-000018eb  GPIOPinTypeEthernetMII                               
-0000190f  GPIOPinTypeGPIOInput                                 
-00001933  GPIOPinTypeGPIOOutput                                
-00001957  GPIOPinTypeGPIOOutputOD                              
-0000197b  GPIOPinTypeI2C                                       
-0000199f  GPIOPinTypeI2CSCL                                    
-00001bbf  GPIOPinTypeKBColumn                                  
-00001b9b  GPIOPinTypeKBRow                                     
-000019c3  GPIOPinTypeLCD                                       
-00001be3  GPIOPinTypeLEDSeq                                    
-000019e7  GPIOPinTypeLPC                                       
-00001a0b  GPIOPinTypePECIRx                                    
-00001a2f  GPIOPinTypePECITx                                    
-00001a53  GPIOPinTypePWM                                       
-00001a77  GPIOPinTypeQEI                                       
-00001a9b  GPIOPinTypeSSI                                       
-00001abf  GPIOPinTypeTimer                                     
-00001ae3  GPIOPinTypeUART                                      
-00001b07  GPIOPinTypeUSBAnalog                                 
-00001b2b  GPIOPinTypeUSBDigital                                
-00001b4f  GPIOPinTypeWakeHigh                                  
-00001b75  GPIOPinTypeWakeLow                                   
-00001c2b  GPIOPinWakeStatus                                    
-000017f3  GPIOPinWrite                                         
-000022b5  IntDisable                                           
-00002243  IntEnable                                            
-00002327  IntIsEnabled                                         
-00002107  IntMasterDisable                                     
-000020f7  IntMasterEnable                                      
-0000241d  IntPendClear                                         
-000023ad  IntPendSet                                           
-0000221f  IntPriorityGet                                       
-00002197  IntPriorityGroupingGet                               
-0000217d  IntPriorityGroupingSet                               
-00002477  IntPriorityMaskGet                                   
-0000246b  IntPriorityMaskSet                                   
-000021cf  IntPrioritySet                                       
-00002117  IntRegister                                          
-0000247f  IntTrigger                                           
-00002169  IntUnregister                                        
-00002c43  ResetISR                                             
-UNDEFED   SHT$$INIT_ARRAY$$Base                                
-UNDEFED   SHT$$INIT_ARRAY$$Limit                               
-000010ff  SysCtlAltClkConfig                                   
-000008d9  SysCtlClockFreqSet                                   
-00000dbd  SysCtlClockGet                                       
-000010e3  SysCtlClockOutConfig                                 
-00000bf1  SysCtlClockSet                                       
-000007d9  SysCtlDeepSleep                                      
-00000f85  SysCtlDeepSleepClockConfigSet                        
-00000f69  SysCtlDeepSleepClockSet                              
-000007b9  SysCtlDeepSleepPowerSet                              
-00002c57  SysCtlDelay                                          
-00000365  SysCtlFlashSectorSizeGet                             
-00000339  SysCtlFlashSizeGet                                   
-0000105b  SysCtlGPIOAHBDisable                                 
-0000103f  SysCtlGPIOAHBEnable                                  
-0000074d  SysCtlIntClear                                       
-00000735  SysCtlIntDisable                                     
-00000721  SysCtlIntEnable                                      
-000006f9  SysCtlIntRegister                                    
-0000075d  SysCtlIntStatus                                      
-00000711  SysCtlIntUnregister                                  
-0000079f  SysCtlLDODeepSleepGet                                
-0000078f  SysCtlLDODeepSleepSet                                
-00000789  SysCtlLDOSleepGet                                    
-00000779  SysCtlLDOSleepSet                                    
-0000080f  SysCtlMOSCConfigSet                                  
-000010cf  SysCtlNMIClear                                       
-000010c9  SysCtlNMIStatus                                      
-00000825  SysCtlPIOSCCalibrate                                 
-00001029  SysCtlPWMClockGet                                    
-0000100f  SysCtlPWMClockSet                                    
-000006a5  SysCtlPeripheralClockGating                          
-0000065d  SysCtlPeripheralDeepSleepDisable                     
-0000060d  SysCtlPeripheralDeepSleepEnable                      
-00000549  SysCtlPeripheralDisable                              
-0000050d  SysCtlPeripheralEnable                               
-00000449  SysCtlPeripheralPowerOff                             
-0000040d  SysCtlPeripheralPowerOn                              
-0000038d  SysCtlPeripheralPresent                              
-000003cd  SysCtlPeripheralReady                                
-00000485  SysCtlPeripheralReset                                
-000005d1  SysCtlPeripheralSleepDisable                         
-0000058d  SysCtlPeripheralSleepEnable                          
-000007c9  SysCtlReset                                          
-00000885  SysCtlResetBehaviorGet                               
-00000875  SysCtlResetBehaviorSet                               
-000007fb  SysCtlResetCauseClear                                
-000007f5  SysCtlResetCauseGet                                  
-0000032f  SysCtlSRAMSizeGet                                    
-000007d1  SysCtlSleep                                          
-000007a5  SysCtlSleepPowerSet                                  
-00001083  SysCtlUSBPLLDisable                                  
-00001077  SysCtlUSBPLLEnable                                   
-000010af  SysCtlVoltageEventClear                              
-00001095  SysCtlVoltageEventConfig                             
-000010a9  SysCtlVoltageEventStatus                             
-00002745  SysTickDisable                                       
-00002739  SysTickEnable                                        
-00002789  SysTickIntDisable                                    
-0000277d  SysTickIntEnable                                     
-00002751  SysTickIntRegister                                   
-00002769  SysTickIntUnregister                                 
-000027a7  SysTickPeriodGet                                     
-00002795  SysTickPeriodSet                                     
-000027af  SysTickValueGet                                      
-00002b29  TickCounter                                          
-00002b39  TickCounterInit                                      
-000024b5  UpdateManageraddTimeMilli                            
-000028bf  _Z21__default_new_handlerv                           
-00002827  _ZN10UpdateBase13getDelayMilliEv                     
-00002811  _ZN10UpdateBase19registerFixedUpdateEv               
-000027f7  _ZN10UpdateBase20registerCustomUpdateEtj             
-0000281d  _ZN10UpdateBase21unRegisterFixedUpdateEv             
-00002807  _ZN10UpdateBase22unRegisterCustomUpdateEv            
-000027e9  _ZN10UpdateBase5getIDEv                              
-00002833  _ZN10UpdateBase9getDelaySEv                          
-000027c1  _ZN10UpdateBaseC1Ev                                  
-000027c1  _ZN10UpdateBaseC2Ev                                  
-0000268d  _ZN10__cxxabiv116__enum_type_infoD0Ev                
-0000268b  _ZN10__cxxabiv116__enum_type_infoD1Ev                
-0000268b  _ZN10__cxxabiv116__enum_type_infoD2Ev                
-00002683  _ZN10__cxxabiv117__array_type_infoD0Ev               
-00002681  _ZN10__cxxabiv117__array_type_infoD1Ev               
-00002681  _ZN10__cxxabiv117__array_type_infoD2Ev               
-00002679  _ZN10__cxxabiv117__class_type_infoD0Ev               
-00002677  _ZN10__cxxabiv117__class_type_infoD1Ev               
-00002677  _ZN10__cxxabiv117__class_type_infoD2Ev               
-0000266f  _ZN10__cxxabiv117__pbase_type_infoD0Ev               
-0000266d  _ZN10__cxxabiv117__pbase_type_infoD1Ev               
-0000266d  _ZN10__cxxabiv117__pbase_type_infoD2Ev               
-00002665  _ZN10__cxxabiv119__pointer_type_infoD0Ev             
-00002663  _ZN10__cxxabiv119__pointer_type_infoD1Ev             
-00002663  _ZN10__cxxabiv119__pointer_type_infoD2Ev             
-0000265b  _ZN10__cxxabiv120__function_type_infoD0Ev            
-00002659  _ZN10__cxxabiv120__function_type_infoD1Ev            
-00002659  _ZN10__cxxabiv120__function_type_infoD2Ev            
-00002651  _ZN10__cxxabiv120__si_class_type_infoD0Ev            
-0000264f  _ZN10__cxxabiv120__si_class_type_infoD1Ev            
-0000264f  _ZN10__cxxabiv120__si_class_type_infoD2Ev            
-00002647  _ZN10__cxxabiv121__vmi_class_type_infoD0Ev           
-00002645  _ZN10__cxxabiv121__vmi_class_type_infoD1Ev           
-00002645  _ZN10__cxxabiv121__vmi_class_type_infoD2Ev           
-0000263d  _ZN10__cxxabiv123__fundamental_type_infoD0Ev         
-0000263b  _ZN10__cxxabiv123__fundamental_type_infoD1Ev         
-0000263b  _ZN10__cxxabiv123__fundamental_type_infoD2Ev         
-00002633  _ZN10__cxxabiv129__pointer_to_member_type_infoD0Ev   
-00002631  _ZN10__cxxabiv129__pointer_to_member_type_infoD1Ev   
-00002631  _ZN10__cxxabiv129__pointer_to_member_type_infoD2Ev   
-200004a8  _ZN13UpdateManager10customRootE                      
-20000470  _ZN13UpdateManager11fixedUpdateE                     
-2000047c  _ZN13UpdateManager11timeSecondsE                     
-0000253f  _ZN13UpdateManager12getTimeMilliEv                   
-00002587  _ZN13UpdateManager15runFixedUpdatesEv                
-20000478  _ZN13UpdateManager16timeMilliSecondsE                
-0000254b  _ZN13UpdateManager19registerFixedUpdateEP10UpdateBase
-000024c9  _ZN13UpdateManager4initEv                            
-2000046c  _ZN13UpdateManager5indexE                            
-00002507  _ZN13UpdateManager6updateEv                          
-000024fd  _ZN13UpdateManager8assignIDEv                        
-00002545  _ZN13UpdateManager8getTimeSEv                        
-200004ac  _ZN13UpdateManager9fixedRootE                        
-20000474  _ZN13UpdateManager9idCounterE                        
-000024bd  _ZN13UpdateManagerC1Ev                               
-000024bd  _ZN13UpdateManagerC2Ev                               
-00002bed  _ZN15UpdateBaseEmpty11updateFixedEv                  
-00002bd9  _ZN15UpdateBaseEmptyC1Ev                             
-00002bd9  _ZN15UpdateBaseEmptyC2Ev                             
-000029c5  _ZN8LEDBlink11updateFixedEv                          
-00002999  _ZN8LEDBlinkC1Ev                                     
-00002999  _ZN8LEDBlinkC2Ev                                     
-000025f3  _ZNKSt9type_info4nameEv                              
-00002623  _ZNKSt9type_info6beforeERKS_                         
-0000260d  _ZNKSt9type_infoeqERKS_                              
-000025f7  _ZNKSt9type_infoneERKS_                              
-000025eb  _ZNSt9type_infoD0Ev                                  
-000025e9  _ZNSt9type_infoD1Ev                                  
-000025e9  _ZNSt9type_infoD2Ev                                  
-200004b0  _ZSt16__dummy_typeinfo                               
-000025e1  _ZSt21__gen_dummy_typeinfosv                         
-00003300  _ZTI10UpdateBase                                     
-0000327c  _ZTI15UpdateBaseEmpty                                
-00003288  _ZTI8LEDBlink                                        
-00003294  _ZTIN10__cxxabiv117__class_type_infoE                
-000032a0  _ZTIN10__cxxabiv117__pbase_type_infoE                
-000032ac  _ZTIN10__cxxabiv119__pointer_type_infoE              
-000032b8  _ZTIN10__cxxabiv120__si_class_type_infoE             
-000032c4  _ZTIN10__cxxabiv123__fundamental_type_infoE          
-00003210  _ZTIPKe                                              
-00003308  _ZTISt9type_info                                     
-00003310  _ZTIe                                                
-00003260  _ZTS10UpdateBase                                     
-000031fd  _ZTS15UpdateBaseEmpty                                
-000032f4  _ZTS8LEDBlink                                        
-000031b9  _ZTSN10__cxxabiv117__class_type_infoE                
-000031db  _ZTSN10__cxxabiv117__pbase_type_infoE                
-00003195  _ZTSN10__cxxabiv119__pointer_type_infoE              
-00003170  _ZTSN10__cxxabiv120__si_class_type_infoE             
-00003148  _ZTSN10__cxxabiv123__fundamental_type_infoE          
-00003328  _ZTSPKe                                              
-0000326d  _ZTSSt9type_info                                     
-0000327a  _ZTSe                                                
-000032d0  _ZTV10UpdateBase                                     
-000032dc  _ZTV15UpdateBaseEmpty                                
-000032e8  _ZTV8LEDBlink                                        
-00003220  _ZTVN10__cxxabiv117__class_type_infoE                
-00003230  _ZTVN10__cxxabiv119__pointer_type_infoE              
-00003240  _ZTVN10__cxxabiv120__si_class_type_infoE             
-00003250  _ZTVN10__cxxabiv123__fundamental_type_infoE          
-00002c4f  _ZdlPv                                               
-00002ba9  _Znwj                                                
-2000046c  __STACK_END                                          
-00000200  __STACK_SIZE                                         
-2000046c  __STACK_TOP                                          
-00000008  __SYSMEM_SIZE                                        
-00003378  __TI_CINIT_Base                                      
-00003390  __TI_CINIT_Limit                                     
-0000335c  __TI_Handler_Table_Base                              
-00003368  __TI_Handler_Table_Limit                             
-000028c1  __TI_auto_init                                       
-20000494  __TI_cleanup_ptr                                     
-00002c29  __TI_decompress_none                                 
-00002c5d  __TI_decompress_rle24                                
-20000498  __TI_dtors_ptr                                       
-00000000  __TI_static_base__                                   
-00002c37  __TI_zero_init                                       
-00002c69  __abort_execution                                    
-00002845  __aeabi_memclr                                       
-00002845  __aeabi_memclr4                                      
-00002845  __aeabi_memclr8                                      
-0000269d  __aeabi_memcpy                                       
-0000269d  __aeabi_memcpy4                                      
-0000269d  __aeabi_memcpy8                                      
-00002847  __aeabi_memset                                       
-00002847  __aeabi_memset4                                      
-00002847  __aeabi_memset8                                      
-ffffffff  __binit__                                            
-ffffffff  __c_args__                                           
-00002c63  __cxa_pure_virtual                                   
-2000026c  __stack                                              
-00002bfd  _args_main                                           
-000029fd  _c_int00                                             
-2000048c  _lock                                                
-200004a4  _new_handler                                         
-00002c23  _nop                                                 
-00002c1b  _register_lock                                       
-00002c15  _register_unlock                                     
-200004b8  _sys_memory                                          
-00002c6d  _system_pre_init                                     
-20000490  _unlock                                              
-00002ae9  abort                                                
-ffffffff  binit                                                
-000020c1  calloc                                               
-00002a99  copy_in                                              
-00002af1  exit                                                 
-00001e0f  free                                                 
-20000000  g_pfnRAMVectors                                      
-00000000  g_pfnVectors                                         
-2000049c  led                                                  
-00002a4d  main                                                 
-200004a0  main_func_sp                                         
-00001da7  malloc                                               
-00001fdd  memalign                                             
-0000269d  memcpy                                               
-0000284d  memset                                               
-00002b5f  millis                                               
-00001d19  minit                                                
-200004b4  msUptime                                             
-00001ed1  realloc                                              
+address   name                                                                                                                          
+-------   ----                                                                                                                          
+00004d88  .ARM.exidx$$Base                                                                                                              
+00004fb0  .ARM.exidx$$Limit                                                                                                             
+000041ed  C$$EXIT                                                                                                                       
+00004265  CPUbasepriGet                                                                                                                 
+00004257  CPUbasepriSet                                                                                                                 
+00004231  CPUcpsid                                                                                                                      
+00004247  CPUcpsie                                                                                                                      
+0000423d  CPUprimask                                                                                                                    
+00004253  CPUwfi                                                                                                                        
+00001cf3  GPIOADCTriggerDisable                                                                                                         
+00001cd5  GPIOADCTriggerEnable                                                                                                          
+00001cb7  GPIODMATriggerDisable                                                                                                         
+00001c99  GPIODMATriggerEnable                                                                                                          
+0000121b  GPIODirModeGet                                                                                                                
+000011bf  GPIODirModeSet                                                                                                                
+0000178f  GPIOIntClear                                                                                                                  
+00001753  GPIOIntDisable                                                                                                                
+00001739  GPIOIntEnable                                                                                                                 
+000017a3  GPIOIntRegister                                                                                                               
+0000176d  GPIOIntStatus                                                                                                                 
+0000130b  GPIOIntTypeGet                                                                                                                
+00001267  GPIOIntTypeSet                                                                                                                
+000017c1  GPIOIntUnregister                                                                                                             
+000015e7  GPIOPadConfigGet                                                                                                              
+000013a9  GPIOPadConfigSet                                                                                                              
+00001c3b  GPIOPinConfigure                                                                                                              
+000017db  GPIOPinRead                                                                                                                   
+00001813  GPIOPinTypeADC                                                                                                                
+00001837  GPIOPinTypeCAN                                                                                                                
+00001c07  GPIOPinTypeCIR                                                                                                                
+0000185b  GPIOPinTypeComparator                                                                                                         
+0000187f  GPIOPinTypeComparatorOutput                                                                                                   
+000018a3  GPIOPinTypeEPI                                                                                                                
+000018c7  GPIOPinTypeEthernetLED                                                                                                        
+000018eb  GPIOPinTypeEthernetMII                                                                                                        
+0000190f  GPIOPinTypeGPIOInput                                                                                                          
+00001933  GPIOPinTypeGPIOOutput                                                                                                         
+00001957  GPIOPinTypeGPIOOutputOD                                                                                                       
+0000197b  GPIOPinTypeI2C                                                                                                                
+0000199f  GPIOPinTypeI2CSCL                                                                                                             
+00001bbf  GPIOPinTypeKBColumn                                                                                                           
+00001b9b  GPIOPinTypeKBRow                                                                                                              
+000019c3  GPIOPinTypeLCD                                                                                                                
+00001be3  GPIOPinTypeLEDSeq                                                                                                             
+000019e7  GPIOPinTypeLPC                                                                                                                
+00001a0b  GPIOPinTypePECIRx                                                                                                             
+00001a2f  GPIOPinTypePECITx                                                                                                             
+00001a53  GPIOPinTypePWM                                                                                                                
+00001a77  GPIOPinTypeQEI                                                                                                                
+00001a9b  GPIOPinTypeSSI                                                                                                                
+00001abf  GPIOPinTypeTimer                                                                                                              
+00001ae3  GPIOPinTypeUART                                                                                                               
+00001b07  GPIOPinTypeUSBAnalog                                                                                                          
+00001b2b  GPIOPinTypeUSBDigital                                                                                                         
+00001b4f  GPIOPinTypeWakeHigh                                                                                                           
+00001b75  GPIOPinTypeWakeLow                                                                                                            
+00001c2b  GPIOPinWakeStatus                                                                                                             
+000017f3  GPIOPinWrite                                                                                                                  
+00003169  IntDisable                                                                                                                    
+000030f7  IntEnable                                                                                                                     
+000031db  IntIsEnabled                                                                                                                  
+00002fbb  IntMasterDisable                                                                                                              
+00002fab  IntMasterEnable                                                                                                               
+000032d1  IntPendClear                                                                                                                  
+00003261  IntPendSet                                                                                                                    
+000030d3  IntPriorityGet                                                                                                                
+0000304b  IntPriorityGroupingGet                                                                                                        
+00003031  IntPriorityGroupingSet                                                                                                        
+0000332b  IntPriorityMaskGet                                                                                                            
+0000331f  IntPriorityMaskSet                                                                                                            
+00003083  IntPrioritySet                                                                                                                
+00002fcb  IntRegister                                                                                                                   
+00003333  IntTrigger                                                                                                                    
+0000301d  IntUnregister                                                                                                                 
+000043f5  ResetISR                                                                                                                      
+UNDEFED   SHT$$INIT_ARRAY$$Base                                                                                                         
+UNDEFED   SHT$$INIT_ARRAY$$Limit                                                                                                        
+000010ff  SysCtlAltClkConfig                                                                                                            
+000008d9  SysCtlClockFreqSet                                                                                                            
+00000dbd  SysCtlClockGet                                                                                                                
+000010e3  SysCtlClockOutConfig                                                                                                          
+00000bf1  SysCtlClockSet                                                                                                                
+000007d9  SysCtlDeepSleep                                                                                                               
+00000f85  SysCtlDeepSleepClockConfigSet                                                                                                 
+00000f69  SysCtlDeepSleepClockSet                                                                                                       
+000007b9  SysCtlDeepSleepPowerSet                                                                                                       
+0000443d  SysCtlDelay                                                                                                                   
+00000365  SysCtlFlashSectorSizeGet                                                                                                      
+00000339  SysCtlFlashSizeGet                                                                                                            
+0000105b  SysCtlGPIOAHBDisable                                                                                                          
+0000103f  SysCtlGPIOAHBEnable                                                                                                           
+0000074d  SysCtlIntClear                                                                                                                
+00000735  SysCtlIntDisable                                                                                                              
+00000721  SysCtlIntEnable                                                                                                               
+000006f9  SysCtlIntRegister                                                                                                             
+0000075d  SysCtlIntStatus                                                                                                               
+00000711  SysCtlIntUnregister                                                                                                           
+0000079f  SysCtlLDODeepSleepGet                                                                                                         
+0000078f  SysCtlLDODeepSleepSet                                                                                                         
+00000789  SysCtlLDOSleepGet                                                                                                             
+00000779  SysCtlLDOSleepSet                                                                                                             
+0000080f  SysCtlMOSCConfigSet                                                                                                           
+000010cf  SysCtlNMIClear                                                                                                                
+000010c9  SysCtlNMIStatus                                                                                                               
+00000825  SysCtlPIOSCCalibrate                                                                                                          
+00001029  SysCtlPWMClockGet                                                                                                             
+0000100f  SysCtlPWMClockSet                                                                                                             
+000006a5  SysCtlPeripheralClockGating                                                                                                   
+0000065d  SysCtlPeripheralDeepSleepDisable                                                                                              
+0000060d  SysCtlPeripheralDeepSleepEnable                                                                                               
+00000549  SysCtlPeripheralDisable                                                                                                       
+0000050d  SysCtlPeripheralEnable                                                                                                        
+00000449  SysCtlPeripheralPowerOff                                                                                                      
+0000040d  SysCtlPeripheralPowerOn                                                                                                       
+0000038d  SysCtlPeripheralPresent                                                                                                       
+000003cd  SysCtlPeripheralReady                                                                                                         
+00000485  SysCtlPeripheralReset                                                                                                         
+000005d1  SysCtlPeripheralSleepDisable                                                                                                  
+0000058d  SysCtlPeripheralSleepEnable                                                                                                   
+000007c9  SysCtlReset                                                                                                                   
+00000885  SysCtlResetBehaviorGet                                                                                                        
+00000875  SysCtlResetBehaviorSet                                                                                                        
+000007fb  SysCtlResetCauseClear                                                                                                         
+000007f5  SysCtlResetCauseGet                                                                                                           
+0000032f  SysCtlSRAMSizeGet                                                                                                             
+000007d1  SysCtlSleep                                                                                                                   
+000007a5  SysCtlSleepPowerSet                                                                                                           
+00001083  SysCtlUSBPLLDisable                                                                                                           
+00001077  SysCtlUSBPLLEnable                                                                                                            
+000010af  SysCtlVoltageEventClear                                                                                                       
+00001095  SysCtlVoltageEventConfig                                                                                                      
+000010a9  SysCtlVoltageEventStatus                                                                                                      
+00003ed1  SysTickDisable                                                                                                                
+00003ec5  SysTickEnable                                                                                                                 
+00003f15  SysTickIntDisable                                                                                                             
+00003f09  SysTickIntEnable                                                                                                              
+00003edd  SysTickIntRegister                                                                                                            
+00003ef5  SysTickIntUnregister                                                                                                          
+00003f33  SysTickPeriodGet                                                                                                              
+00003f21  SysTickPeriodSet                                                                                                              
+00003f3b  SysTickValueGet                                                                                                               
+000042f9  TickCounter                                                                                                                   
+00004301  TickCounterInit                                                                                                               
+00003369  UpdateManagerupdateTime                                                                                                       
+00004035  _Unwind_RaiseException                                                                                                        
+00004057  _Unwind_Resume                                                                                                                
+000039b9  _Z13__TI_prel2absPKj                                                                                                          
+00002f5f  _Z16__TI_targ_set_prP19_Unwind_Exception_s                                                                                    
+00004271  _Z21__default_new_handlerv                                                                                                    
+00002f5d  _Z22__TI_targ_rtti_addressjP15_Unwind_Context                                                                                 
+00002f59  _Z23__TI_targ_regbuf_get_pcP15_Unwind_Context                                                                                 
+00002f55  _Z23__TI_targ_regbuf_get_sbP15_Unwind_Context                                                                                 
+00002f51  _Z23__TI_targ_regbuf_get_spP15_Unwind_Context                                                                                 
+00002f4d  _Z23__TI_targ_regbuf_set_pcP15_Unwind_Contextj                                                                                
+000035f9  _Z24__TI_process_descriptors13_Unwind_PhaseP19_Unwind_Exception_sP15_Unwind_Context15_Unwind_PR_KindPjP19_Unwind_Reason_CodePb
+00002f45  _Z24__TI_targ_regbuf_installP15_Unwind_Context                                                                                
+00002f41  _Z26__TI_targ_setup_call_parm0P15_Unwind_Contextj                                                                             
+00003be7  _ZN10UpdateBase10getCustomSEv                                                                                                 
+00003bd5  _ZN10UpdateBase11getCustomMSEv                                                                                                
+00003c33  _ZN10UpdateBase13getDelayMilliEv                                                                                              
+00003bb3  _ZN10UpdateBase15setCustomUpdateEtj                                                                                           
+00003bf5  _ZN10UpdateBase17resetCustomUpdateEv                                                                                          
+00003c1b  _ZN10UpdateBase19registerFixedUpdateEv                                                                                        
+00003b83  _ZN10UpdateBase20registerCustomUpdateEtj                                                                                      
+00003ba1  _ZN10UpdateBase20registerCustomUpdateEv                                                                                       
+00003c27  _ZN10UpdateBase21unRegisterFixedUpdateEv                                                                                      
+00003c0f  _ZN10UpdateBase22unRegisterCustomUpdateEv                                                                                     
+00003b75  _ZN10UpdateBase5getIDEv                                                                                                       
+00003c3f  _ZN10UpdateBase9getDelaySEv                                                                                                   
+00003b11  _ZN10UpdateBaseC1Ev                                                                                                           
+00003b11  _ZN10UpdateBaseC2Ev                                                                                                           
+00003b5f  _ZN10UpdateBaseD0Ev                                                                                                           
+00003b45  _ZN10UpdateBaseD1Ev                                                                                                           
+00003b45  _ZN10UpdateBaseD2Ev                                                                                                           
+000042b5  _ZN10UpdateRoot11updateFixedEv                                                                                                
+000042bf  _ZN10UpdateRoot12updateCustomEv                                                                                               
+000042a1  _ZN10UpdateRootC1Ev                                                                                                           
+000042a1  _ZN10UpdateRootC2Ev                                                                                                           
+00004341  _ZN10UpdateRootD0Ev                                                                                                           
+000043b1  _ZN10UpdateRootD1Ev                                                                                                           
+00003d65  _ZN10__cxxabiv116__enum_type_infoD0Ev                                                                                         
+00003d63  _ZN10__cxxabiv116__enum_type_infoD1Ev                                                                                         
+00003d63  _ZN10__cxxabiv116__enum_type_infoD2Ev                                                                                         
+00003d5b  _ZN10__cxxabiv117__array_type_infoD0Ev                                                                                        
+00003d59  _ZN10__cxxabiv117__array_type_infoD1Ev                                                                                        
+00003d59  _ZN10__cxxabiv117__array_type_infoD2Ev                                                                                        
+00003d51  _ZN10__cxxabiv117__class_type_infoD0Ev                                                                                        
+00003d4f  _ZN10__cxxabiv117__class_type_infoD1Ev                                                                                        
+00003d4f  _ZN10__cxxabiv117__class_type_infoD2Ev                                                                                        
+00003d47  _ZN10__cxxabiv117__pbase_type_infoD0Ev                                                                                        
+00003d45  _ZN10__cxxabiv117__pbase_type_infoD1Ev                                                                                        
+00003d45  _ZN10__cxxabiv117__pbase_type_infoD2Ev                                                                                        
+00003d3d  _ZN10__cxxabiv119__pointer_type_infoD0Ev                                                                                      
+00003d3b  _ZN10__cxxabiv119__pointer_type_infoD1Ev                                                                                      
+00003d3b  _ZN10__cxxabiv119__pointer_type_infoD2Ev                                                                                      
+00003d33  _ZN10__cxxabiv120__function_type_infoD0Ev                                                                                     
+00003d31  _ZN10__cxxabiv120__function_type_infoD1Ev                                                                                     
+00003d31  _ZN10__cxxabiv120__function_type_infoD2Ev                                                                                     
+00003d29  _ZN10__cxxabiv120__si_class_type_infoD0Ev                                                                                     
+00003d27  _ZN10__cxxabiv120__si_class_type_infoD1Ev                                                                                     
+00003d27  _ZN10__cxxabiv120__si_class_type_infoD2Ev                                                                                     
+00003d1f  _ZN10__cxxabiv121__vmi_class_type_infoD0Ev                                                                                    
+00003d1d  _ZN10__cxxabiv121__vmi_class_type_infoD1Ev                                                                                    
+00003d1d  _ZN10__cxxabiv121__vmi_class_type_infoD2Ev                                                                                    
+00003d15  _ZN10__cxxabiv123__fundamental_type_infoD0Ev                                                                                  
+00003d13  _ZN10__cxxabiv123__fundamental_type_infoD1Ev                                                                                  
+00003d13  _ZN10__cxxabiv123__fundamental_type_infoD2Ev                                                                                  
+00003d0b  _ZN10__cxxabiv129__pointer_to_member_type_infoD0Ev                                                                            
+00003d09  _ZN10__cxxabiv129__pointer_to_member_type_infoD1Ev                                                                            
+00003d09  _ZN10__cxxabiv129__pointer_to_member_type_infoD2Ev                                                                            
+20000878  _ZN13UpdateManager10customRootE                                                                                               
+000033d1  _ZN13UpdateManager10updateTimeEv                                                                                              
+2000087c  _ZN13UpdateManager11fixedUpdateE                                                                                              
+20000888  _ZN13UpdateManager11timeSecondsE                                                                                              
+2000087d  _ZN13UpdateManager12customUpdateE                                                                                             
+0000340f  _ZN13UpdateManager12getTimeMilliEv                                                                                            
+0000349f  _ZN13UpdateManager12registerItemEP10UpdateBaseS1_                                                                             
+00003537  _ZN13UpdateManager12traverseListEv                                                                                            
+000034c9  _ZN13UpdateManager14unRegisterItemEP10UpdateBaseS1_                                                                           
+00003551  _ZN13UpdateManager15runFixedUpdatesEv                                                                                         
+00003577  _ZN13UpdateManager16runCustomUpdatesEv                                                                                        
+20000884  _ZN13UpdateManager16timeMilliSecondsE                                                                                         
+0000341b  _ZN13UpdateManager19registerFixedUpdateEP10UpdateBase                                                                         
+00003447  _ZN13UpdateManager20registerCustomUpdateEP10UpdateBase                                                                        
+00003431  _ZN13UpdateManager21unRegisterFixedUpdateEP10UpdateBase                                                                       
+00003465  _ZN13UpdateManager22unRegisterCustomUpdateEP10UpdateBase                                                                      
+0000337d  _ZN13UpdateManager4initEv                                                                                                     
+20000870  _ZN13UpdateManager5indexE                                                                                                     
+0000347b  _ZN13UpdateManager6updateEv                                                                                                   
+000033c7  _ZN13UpdateManager8assignIDEv                                                                                                 
+00003415  _ZN13UpdateManager8getTimeSEv                                                                                                 
+20000874  _ZN13UpdateManager9fixedRootE                                                                                                 
+20000880  _ZN13UpdateManager9idCounterE                                                                                                 
+00003371  _ZN13UpdateManagerC1Ev                                                                                                        
+00003371  _ZN13UpdateManagerC2Ev                                                                                                        
+000038cf  _ZN8LEDBlink11updateFixedEv                                                                                                   
+0000390f  _ZN8LEDBlink12updateCustomEv                                                                                                  
+000038b9  _ZN8LEDBlink3offEv                                                                                                            
+0000387d  _ZN8LEDBlink7initLEDEjjj                                                                                                      
+00003851  _ZN8LEDBlinkC1Ev                                                                                                              
+00003851  _ZN8LEDBlinkC2Ev                                                                                                              
+00004357  _ZN8LEDBlinkD0Ev                                                                                                              
+000043bf  _ZN8LEDBlinkD1Ev                                                                                                              
+00003d05  _ZNKSt10bad_typeid4whatEv                                                                                                     
+00003d01  _ZNKSt8bad_cast4whatEv                                                                                                        
+0000444f  _ZNKSt9exception4whatEv                                                                                                       
+00003cc3  _ZNKSt9type_info4nameEv                                                                                                       
+00003cf3  _ZNKSt9type_info6beforeERKS_                                                                                                  
+00003cdd  _ZNKSt9type_infoeqERKS_                                                                                                       
+00003cc7  _ZNKSt9type_infoneERKS_                                                                                                       
+00003cb7  _ZNSt10bad_typeidC1ERKS_                                                                                                      
+00003ca9  _ZNSt10bad_typeidC1Ev                                                                                                         
+00003cb7  _ZNSt10bad_typeidC2ERKS_                                                                                                      
+00003ca9  _ZNSt10bad_typeidC2Ev                                                                                                         
+00003ca1  _ZNSt10bad_typeidD0Ev                                                                                                         
+00003c9f  _ZNSt10bad_typeidD1Ev                                                                                                         
+00003c9f  _ZNSt10bad_typeidD2Ev                                                                                                         
+00003c93  _ZNSt10bad_typeidaSERKS_                                                                                                      
+00004381  _ZNSt13bad_exceptionC1EPKc                                                                                                    
+00004415  _ZNSt13bad_exceptionD0Ev                                                                                                      
+0000384f  _ZNSt13bad_exceptionD1Ev                                                                                                      
+00003c87  _ZNSt8bad_castC1ERKS_                                                                                                         
+00003c79  _ZNSt8bad_castC1Ev                                                                                                            
+00003c87  _ZNSt8bad_castC2ERKS_                                                                                                         
+00003c79  _ZNSt8bad_castC2Ev                                                                                                            
+00003c71  _ZNSt8bad_castD0Ev                                                                                                            
+00003c6f  _ZNSt8bad_castD1Ev                                                                                                            
+00003c6f  _ZNSt8bad_castD2Ev                                                                                                            
+00003c63  _ZNSt8bad_castaSERKS_                                                                                                         
+00004391  _ZNSt9bad_allocC1EPKc                                                                                                         
+0000441d  _ZNSt9bad_allocD0Ev                                                                                                           
+00003fc7  _ZNSt9bad_allocD1Ev                                                                                                           
+000043dd  _ZNSt9exceptionC1EPKc                                                                                                         
+000043a1  _ZNSt9exceptionC1ERKS_                                                                                                        
+00004425  _ZNSt9exceptionD0Ev                                                                                                           
+0000410b  _ZNSt9exceptionD1Ev                                                                                                           
+00004443  _ZNSt9exceptionaSERKS_                                                                                                        
+00003c5b  _ZNSt9type_infoD0Ev                                                                                                           
+00003c59  _ZNSt9type_infoD1Ev                                                                                                           
+00003c59  _ZNSt9type_infoD2Ev                                                                                                           
+00002615  _ZSt10unexpectedv                                                                                                             
+000027c3  _ZSt13set_terminatePFvvE                                                                                                      
+000027b3  _ZSt14set_unexpectedPFvvE                                                                                                     
+2000066c  _ZSt16__dummy_typeinfo                                                                                                        
+0000279d  _ZSt18uncaught_exceptionv                                                                                                     
+00003c51  _ZSt21__gen_dummy_typeinfosv                                                                                                  
+000024e7  _ZSt9terminatev                                                                                                               
+00004c14  _ZTI10UpdateBase                                                                                                              
+00004b6c  _ZTI10UpdateRoot                                                                                                              
+00004b78  _ZTI8LEDBlink                                                                                                                 
+00004b84  _ZTIN10__cxxabiv117__class_type_infoE                                                                                         
+00004b90  _ZTIN10__cxxabiv117__pbase_type_infoE                                                                                         
+00004b9c  _ZTIN10__cxxabiv119__pointer_type_infoE                                                                                       
+00004ba8  _ZTIN10__cxxabiv120__si_class_type_infoE                                                                                      
+00004bb4  _ZTIN10__cxxabiv121__vmi_class_type_infoE                                                                                     
+00004bc0  _ZTIN10__cxxabiv123__fundamental_type_infoE                                                                                   
+00004acc  _ZTIPKe                                                                                                                       
+00004bcc  _ZTISt10bad_typeid                                                                                                            
+00004bd8  _ZTISt13bad_exception                                                                                                         
+00004be4  _ZTISt8bad_cast                                                                                                               
+00004bf0  _ZTISt9bad_alloc                                                                                                              
+00004c1c  _ZTISt9exception                                                                                                              
+00004c24  _ZTISt9type_info                                                                                                              
+00004c2c  _ZTIe                                                                                                                         
+00004c34  _ZTIv                                                                                                                         
+00004b2b  _ZTS10UpdateBase                                                                                                              
+00004b38  _ZTS10UpdateRoot                                                                                                              
+00004c08  _ZTS8LEDBlink                                                                                                                 
+000049c7  _ZTSN10__cxxabiv117__class_type_infoE                                                                                         
+000049e9  _ZTSN10__cxxabiv117__pbase_type_infoE                                                                                         
+000049a3  _ZTSN10__cxxabiv119__pointer_type_infoE                                                                                       
+0000497e  _ZTSN10__cxxabiv120__si_class_type_infoE                                                                                      
+00004958  _ZTSN10__cxxabiv121__vmi_class_type_infoE                                                                                     
+00004930  _ZTSN10__cxxabiv123__fundamental_type_infoE                                                                                   
+00004c4c  _ZTSPKe                                                                                                                       
+00004b1c  _ZTSSt10bad_typeid                                                                                                            
+00004ab8  _ZTSSt13bad_exception                                                                                                         
+00004bfc  _ZTSSt8bad_cast                                                                                                               
+00004b45  _ZTSSt9bad_alloc                                                                                                              
+00004b52  _ZTSSt9exception                                                                                                              
+00004b5f  _ZTSSt9type_info                                                                                                              
+00004aca  _ZTSe                                                                                                                         
+00004c12  _ZTSv                                                                                                                         
+00004a0c  _ZTV10UpdateBase                                                                                                              
+00004a24  _ZTV10UpdateRoot                                                                                                              
+00004a3c  _ZTV8LEDBlink                                                                                                                 
+00004adc  _ZTVN10__cxxabiv117__class_type_infoE                                                                                         
+00004aec  _ZTVN10__cxxabiv119__pointer_type_infoE                                                                                       
+00004afc  _ZTVN10__cxxabiv120__si_class_type_infoE                                                                                      
+00004b0c  _ZTVN10__cxxabiv123__fundamental_type_infoE                                                                                   
+00004a54  _ZTVSt10bad_typeid                                                                                                            
+00004a68  _ZTVSt13bad_exception                                                                                                         
+00004a7c  _ZTVSt8bad_cast                                                                                                               
+00004a90  _ZTVSt9bad_alloc                                                                                                              
+00004aa4  _ZTVSt9exception                                                                                                              
+00004401  _ZdlPv                                                                                                                        
+000042cd  _Znwj                                                                                                                         
+2000066c  __STACK_END                                                                                                                   
+00000400  __STACK_SIZE                                                                                                                  
+2000046c  __STACK_TOP                                                                                                                   
+00000200  __SYSMEM_SIZE                                                                                                                 
+00004d70  __TI_CINIT_Base                                                                                                               
+00004d88  __TI_CINIT_Limit                                                                                                              
+00004d50  __TI_Handler_Table_Base                                                                                                       
+00004d5c  __TI_Handler_Table_Limit                                                                                                      
+0000406d  __TI_Install_CoreRegs                                                                                                         
+00004fb0  __TI_UNWIND_TABLE_END                                                                                                         
+00004d88  __TI_UNWIND_TABLE_START                                                                                                       
+00002f21  __TI_Unwind_RaiseException                                                                                                    
+00003acb  __TI_Unwind_RaiseException2                                                                                                   
+00003a93  __TI_Unwind_Resume                                                                                                            
+00003fc9  __TI_auto_init                                                                                                                
+200008a8  __TI_cleanup_ptr                                                                                                              
+00002791  __TI_cxa_end_cleanup                                                                                                          
+000043cd  __TI_decompress_none                                                                                                          
+00004449  __TI_decompress_rle24                                                                                                         
+200008ac  __TI_dtors_ptr                                                                                                                
+00004095  __TI_preserve_low_VFP                                                                                                         
+0000409b  __TI_restore_low_VFP                                                                                                          
+00000000  __TI_static_base__                                                                                                            
+000039c3  __TI_ut_entry_cmp                                                                                                             
+000043e9  __TI_zero_init                                                                                                                
+0000442d  __abort_execution                                                                                                             
+00003f4d  __aeabi_memclr                                                                                                                
+00003f4d  __aeabi_memclr4                                                                                                               
+00003f4d  __aeabi_memclr8                                                                                                               
+00003e29  __aeabi_memcpy                                                                                                                
+00003e29  __aeabi_memcpy4                                                                                                               
+00003e29  __aeabi_memcpy8                                                                                                               
+00003f4f  __aeabi_memset                                                                                                                
+00003f4f  __aeabi_memset4                                                                                                               
+00003f4f  __aeabi_memset8                                                                                                               
+00002f17  __aeabi_unwind_cpp_pr0                                                                                                        
+00002f0d  __aeabi_unwind_cpp_pr1                                                                                                        
+00002f03  __aeabi_unwind_cpp_pr2                                                                                                        
+ffffffff  __binit__                                                                                                                     
+ffffffff  __c_args__                                                                                                                    
+00002641  __cxa_allocate_exception                                                                                                      
+000022cd  __cxa_bad_cast                                                                                                                
+00001d19  __cxa_bad_typeid                                                                                                              
+000024a7  __cxa_begin_catch                                                                                                             
+0000277f  __cxa_begin_cleanup                                                                                                           
+00002525  __cxa_call_terminate                                                                                                          
+000026ad  __cxa_call_unexpected                                                                                                         
+00002603  __cxa_current_exception_type                                                                                                  
+000025b7  __cxa_end_catch                                                                                                               
+00004087  __cxa_end_cleanup                                                                                                             
+00002595  __cxa_free_exception                                                                                                          
+00002467  __cxa_get_globals                                                                                                             
+0000440b  __cxa_pure_virtual                                                                                                            
+00002561  __cxa_rethrow                                                                                                                 
+00002537  __cxa_throw                                                                                                                   
+000022f1  __cxa_type_match                                                                                                              
+000021c7  __derived_to_base_conversion                                                                                                  
+0000223d  __dynamic_cast                                                                                                                
+2000026c  __stack                                                                                                                       
+00004435  __tdeh_init                                                                                                                   
+00004321  _args_main                                                                                                                    
+0000410d  _c_int00                                                                                                                      
+200008a0  _lock                                                                                                                         
+200008b8  _new_handler                                                                                                                  
+0000437b  _nop                                                                                                                          
+00004373  _register_lock                                                                                                                
+0000436d  _register_unlock                                                                                                              
+20000670  _sys_memory                                                                                                                   
+00004453  _system_pre_init                                                                                                              
+200008a4  _unlock                                                                                                                       
+000041f1  abort                                                                                                                         
+ffffffff  binit                                                                                                                         
+000041a9  bsearch                                                                                                                       
+00002ba1  calloc                                                                                                                        
+0000415d  copy_in                                                                                                                       
+000041f9  exit                                                                                                                          
+000028ef  free                                                                                                                          
+20000000  g_pfnRAMVectors                                                                                                               
+00000000  g_pfnVectors                                                                                                                  
+2000089c  ledGREEN                                                                                                                      
+20000898  ledRED                                                                                                                        
+00003d89  main                                                                                                                          
+200008b0  main_func_sp                                                                                                                  
+00002887  malloc                                                                                                                        
+00002abd  memalign                                                                                                                      
+00003e29  memcpy                                                                                                                        
+00003f55  memset                                                                                                                        
+000027f9  minit                                                                                                                         
+000029b1  realloc                                                                                                                       
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
 
-address   name                                                 
--------   ----                                                 
-00000000  __TI_static_base__                                   
-00000000  g_pfnVectors                                         
-00000008  __SYSMEM_SIZE                                        
-00000200  __STACK_SIZE                                         
-0000032f  SysCtlSRAMSizeGet                                    
-00000339  SysCtlFlashSizeGet                                   
-00000365  SysCtlFlashSectorSizeGet                             
-0000038d  SysCtlPeripheralPresent                              
-000003cd  SysCtlPeripheralReady                                
-0000040d  SysCtlPeripheralPowerOn                              
-00000449  SysCtlPeripheralPowerOff                             
-00000485  SysCtlPeripheralReset                                
-0000050d  SysCtlPeripheralEnable                               
-00000549  SysCtlPeripheralDisable                              
-0000058d  SysCtlPeripheralSleepEnable                          
-000005d1  SysCtlPeripheralSleepDisable                         
-0000060d  SysCtlPeripheralDeepSleepEnable                      
-0000065d  SysCtlPeripheralDeepSleepDisable                     
-000006a5  SysCtlPeripheralClockGating                          
-000006f9  SysCtlIntRegister                                    
-00000711  SysCtlIntUnregister                                  
-00000721  SysCtlIntEnable                                      
-00000735  SysCtlIntDisable                                     
-0000074d  SysCtlIntClear                                       
-0000075d  SysCtlIntStatus                                      
-00000779  SysCtlLDOSleepSet                                    
-00000789  SysCtlLDOSleepGet                                    
-0000078f  SysCtlLDODeepSleepSet                                
-0000079f  SysCtlLDODeepSleepGet                                
-000007a5  SysCtlSleepPowerSet                                  
-000007b9  SysCtlDeepSleepPowerSet                              
-000007c9  SysCtlReset                                          
-000007d1  SysCtlSleep                                          
-000007d9  SysCtlDeepSleep                                      
-000007f5  SysCtlResetCauseGet                                  
-000007fb  SysCtlResetCauseClear                                
-0000080f  SysCtlMOSCConfigSet                                  
-00000825  SysCtlPIOSCCalibrate                                 
-00000875  SysCtlResetBehaviorSet                               
-00000885  SysCtlResetBehaviorGet                               
-000008d9  SysCtlClockFreqSet                                   
-00000bf1  SysCtlClockSet                                       
-00000dbd  SysCtlClockGet                                       
-00000f69  SysCtlDeepSleepClockSet                              
-00000f85  SysCtlDeepSleepClockConfigSet                        
-0000100f  SysCtlPWMClockSet                                    
-00001029  SysCtlPWMClockGet                                    
-0000103f  SysCtlGPIOAHBEnable                                  
-0000105b  SysCtlGPIOAHBDisable                                 
-00001077  SysCtlUSBPLLEnable                                   
-00001083  SysCtlUSBPLLDisable                                  
-00001095  SysCtlVoltageEventConfig                             
-000010a9  SysCtlVoltageEventStatus                             
-000010af  SysCtlVoltageEventClear                              
-000010c9  SysCtlNMIStatus                                      
-000010cf  SysCtlNMIClear                                       
-000010e3  SysCtlClockOutConfig                                 
-000010ff  SysCtlAltClkConfig                                   
-000011bf  GPIODirModeSet                                       
-0000121b  GPIODirModeGet                                       
-00001267  GPIOIntTypeSet                                       
-0000130b  GPIOIntTypeGet                                       
-000013a9  GPIOPadConfigSet                                     
-000015e7  GPIOPadConfigGet                                     
-00001739  GPIOIntEnable                                        
-00001753  GPIOIntDisable                                       
-0000176d  GPIOIntStatus                                        
-0000178f  GPIOIntClear                                         
-000017a3  GPIOIntRegister                                      
-000017c1  GPIOIntUnregister                                    
-000017db  GPIOPinRead                                          
-000017f3  GPIOPinWrite                                         
-00001813  GPIOPinTypeADC                                       
-00001837  GPIOPinTypeCAN                                       
-0000185b  GPIOPinTypeComparator                                
-0000187f  GPIOPinTypeComparatorOutput                          
-000018a3  GPIOPinTypeEPI                                       
-000018c7  GPIOPinTypeEthernetLED                               
-000018eb  GPIOPinTypeEthernetMII                               
-0000190f  GPIOPinTypeGPIOInput                                 
-00001933  GPIOPinTypeGPIOOutput                                
-00001957  GPIOPinTypeGPIOOutputOD                              
-0000197b  GPIOPinTypeI2C                                       
-0000199f  GPIOPinTypeI2CSCL                                    
-000019c3  GPIOPinTypeLCD                                       
-000019e7  GPIOPinTypeLPC                                       
-00001a0b  GPIOPinTypePECIRx                                    
-00001a2f  GPIOPinTypePECITx                                    
-00001a53  GPIOPinTypePWM                                       
-00001a77  GPIOPinTypeQEI                                       
-00001a9b  GPIOPinTypeSSI                                       
-00001abf  GPIOPinTypeTimer                                     
-00001ae3  GPIOPinTypeUART                                      
-00001b07  GPIOPinTypeUSBAnalog                                 
-00001b2b  GPIOPinTypeUSBDigital                                
-00001b4f  GPIOPinTypeWakeHigh                                  
-00001b75  GPIOPinTypeWakeLow                                   
-00001b9b  GPIOPinTypeKBRow                                     
-00001bbf  GPIOPinTypeKBColumn                                  
-00001be3  GPIOPinTypeLEDSeq                                    
-00001c07  GPIOPinTypeCIR                                       
-00001c2b  GPIOPinWakeStatus                                    
-00001c3b  GPIOPinConfigure                                     
-00001c99  GPIODMATriggerEnable                                 
-00001cb7  GPIODMATriggerDisable                                
-00001cd5  GPIOADCTriggerEnable                                 
-00001cf3  GPIOADCTriggerDisable                                
-00001d19  minit                                                
-00001da7  malloc                                               
-00001e0f  free                                                 
-00001ed1  realloc                                              
-00001fdd  memalign                                             
-000020c1  calloc                                               
-000020f7  IntMasterEnable                                      
-00002107  IntMasterDisable                                     
-00002117  IntRegister                                          
-00002169  IntUnregister                                        
-0000217d  IntPriorityGroupingSet                               
-00002197  IntPriorityGroupingGet                               
-000021cf  IntPrioritySet                                       
-0000221f  IntPriorityGet                                       
-00002243  IntEnable                                            
-000022b5  IntDisable                                           
-00002327  IntIsEnabled                                         
-000023ad  IntPendSet                                           
-0000241d  IntPendClear                                         
-0000246b  IntPriorityMaskSet                                   
-00002477  IntPriorityMaskGet                                   
-0000247f  IntTrigger                                           
-000024b5  UpdateManageraddTimeMilli                            
-000024bd  _ZN13UpdateManagerC1Ev                               
-000024bd  _ZN13UpdateManagerC2Ev                               
-000024c9  _ZN13UpdateManager4initEv                            
-000024fd  _ZN13UpdateManager8assignIDEv                        
-00002507  _ZN13UpdateManager6updateEv                          
-0000253f  _ZN13UpdateManager12getTimeMilliEv                   
-00002545  _ZN13UpdateManager8getTimeSEv                        
-0000254b  _ZN13UpdateManager19registerFixedUpdateEP10UpdateBase
-00002587  _ZN13UpdateManager15runFixedUpdatesEv                
-000025e1  _ZSt21__gen_dummy_typeinfosv                         
-000025e9  _ZNSt9type_infoD1Ev                                  
-000025e9  _ZNSt9type_infoD2Ev                                  
-000025eb  _ZNSt9type_infoD0Ev                                  
-000025f3  _ZNKSt9type_info4nameEv                              
-000025f7  _ZNKSt9type_infoneERKS_                              
-0000260d  _ZNKSt9type_infoeqERKS_                              
-00002623  _ZNKSt9type_info6beforeERKS_                         
-00002631  _ZN10__cxxabiv129__pointer_to_member_type_infoD1Ev   
-00002631  _ZN10__cxxabiv129__pointer_to_member_type_infoD2Ev   
-00002633  _ZN10__cxxabiv129__pointer_to_member_type_infoD0Ev   
-0000263b  _ZN10__cxxabiv123__fundamental_type_infoD1Ev         
-0000263b  _ZN10__cxxabiv123__fundamental_type_infoD2Ev         
-0000263d  _ZN10__cxxabiv123__fundamental_type_infoD0Ev         
-00002645  _ZN10__cxxabiv121__vmi_class_type_infoD1Ev           
-00002645  _ZN10__cxxabiv121__vmi_class_type_infoD2Ev           
-00002647  _ZN10__cxxabiv121__vmi_class_type_infoD0Ev           
-0000264f  _ZN10__cxxabiv120__si_class_type_infoD1Ev            
-0000264f  _ZN10__cxxabiv120__si_class_type_infoD2Ev            
-00002651  _ZN10__cxxabiv120__si_class_type_infoD0Ev            
-00002659  _ZN10__cxxabiv120__function_type_infoD1Ev            
-00002659  _ZN10__cxxabiv120__function_type_infoD2Ev            
-0000265b  _ZN10__cxxabiv120__function_type_infoD0Ev            
-00002663  _ZN10__cxxabiv119__pointer_type_infoD1Ev             
-00002663  _ZN10__cxxabiv119__pointer_type_infoD2Ev             
-00002665  _ZN10__cxxabiv119__pointer_type_infoD0Ev             
-0000266d  _ZN10__cxxabiv117__pbase_type_infoD1Ev               
-0000266d  _ZN10__cxxabiv117__pbase_type_infoD2Ev               
-0000266f  _ZN10__cxxabiv117__pbase_type_infoD0Ev               
-00002677  _ZN10__cxxabiv117__class_type_infoD1Ev               
-00002677  _ZN10__cxxabiv117__class_type_infoD2Ev               
-00002679  _ZN10__cxxabiv117__class_type_infoD0Ev               
-00002681  _ZN10__cxxabiv117__array_type_infoD1Ev               
-00002681  _ZN10__cxxabiv117__array_type_infoD2Ev               
-00002683  _ZN10__cxxabiv117__array_type_infoD0Ev               
-0000268b  _ZN10__cxxabiv116__enum_type_infoD1Ev                
-0000268b  _ZN10__cxxabiv116__enum_type_infoD2Ev                
-0000268d  _ZN10__cxxabiv116__enum_type_infoD0Ev                
-0000269d  __aeabi_memcpy                                       
-0000269d  __aeabi_memcpy4                                      
-0000269d  __aeabi_memcpy8                                      
-0000269d  memcpy                                               
-00002739  SysTickEnable                                        
-00002745  SysTickDisable                                       
-00002751  SysTickIntRegister                                   
-00002769  SysTickIntUnregister                                 
-0000277d  SysTickIntEnable                                     
-00002789  SysTickIntDisable                                    
-00002795  SysTickPeriodSet                                     
-000027a7  SysTickPeriodGet                                     
-000027af  SysTickValueGet                                      
-000027c1  _ZN10UpdateBaseC1Ev                                  
-000027c1  _ZN10UpdateBaseC2Ev                                  
-000027e9  _ZN10UpdateBase5getIDEv                              
-000027f7  _ZN10UpdateBase20registerCustomUpdateEtj             
-00002807  _ZN10UpdateBase22unRegisterCustomUpdateEv            
-00002811  _ZN10UpdateBase19registerFixedUpdateEv               
-0000281d  _ZN10UpdateBase21unRegisterFixedUpdateEv             
-00002827  _ZN10UpdateBase13getDelayMilliEv                     
-00002833  _ZN10UpdateBase9getDelaySEv                          
-00002845  __aeabi_memclr                                       
-00002845  __aeabi_memclr4                                      
-00002845  __aeabi_memclr8                                      
-00002847  __aeabi_memset                                       
-00002847  __aeabi_memset4                                      
-00002847  __aeabi_memset8                                      
-0000284d  memset                                               
-000028bf  _Z21__default_new_handlerv                           
-000028c1  __TI_auto_init                                       
-00002999  _ZN8LEDBlinkC1Ev                                     
-00002999  _ZN8LEDBlinkC2Ev                                     
-000029c5  _ZN8LEDBlink11updateFixedEv                          
-000029fd  _c_int00                                             
-00002a4d  main                                                 
-00002a99  copy_in                                              
-00002ae5  C$$EXIT                                              
-00002ae9  abort                                                
-00002af1  exit                                                 
-00002b29  TickCounter                                          
-00002b39  TickCounterInit                                      
-00002b5f  millis                                               
-00002b69  CPUcpsid                                             
-00002b75  CPUprimask                                           
-00002b7f  CPUcpsie                                             
-00002b8b  CPUwfi                                               
-00002b8f  CPUbasepriSet                                        
-00002b9d  CPUbasepriGet                                        
-00002ba9  _Znwj                                                
-00002bd9  _ZN15UpdateBaseEmptyC1Ev                             
-00002bd9  _ZN15UpdateBaseEmptyC2Ev                             
-00002bed  _ZN15UpdateBaseEmpty11updateFixedEv                  
-00002bfd  _args_main                                           
-00002c15  _register_unlock                                     
-00002c1b  _register_lock                                       
-00002c23  _nop                                                 
-00002c29  __TI_decompress_none                                 
-00002c37  __TI_zero_init                                       
-00002c43  ResetISR                                             
-00002c4f  _ZdlPv                                               
-00002c57  SysCtlDelay                                          
-00002c5d  __TI_decompress_rle24                                
-00002c63  __cxa_pure_virtual                                   
-00002c69  __abort_execution                                    
-00002c6d  _system_pre_init                                     
-00003148  _ZTSN10__cxxabiv123__fundamental_type_infoE          
-00003170  _ZTSN10__cxxabiv120__si_class_type_infoE             
-00003195  _ZTSN10__cxxabiv119__pointer_type_infoE              
-000031b9  _ZTSN10__cxxabiv117__class_type_infoE                
-000031db  _ZTSN10__cxxabiv117__pbase_type_infoE                
-000031fd  _ZTS15UpdateBaseEmpty                                
-00003210  _ZTIPKe                                              
-00003220  _ZTVN10__cxxabiv117__class_type_infoE                
-00003230  _ZTVN10__cxxabiv119__pointer_type_infoE              
-00003240  _ZTVN10__cxxabiv120__si_class_type_infoE             
-00003250  _ZTVN10__cxxabiv123__fundamental_type_infoE          
-00003260  _ZTS10UpdateBase                                     
-0000326d  _ZTSSt9type_info                                     
-0000327a  _ZTSe                                                
-0000327c  _ZTI15UpdateBaseEmpty                                
-00003288  _ZTI8LEDBlink                                        
-00003294  _ZTIN10__cxxabiv117__class_type_infoE                
-000032a0  _ZTIN10__cxxabiv117__pbase_type_infoE                
-000032ac  _ZTIN10__cxxabiv119__pointer_type_infoE              
-000032b8  _ZTIN10__cxxabiv120__si_class_type_infoE             
-000032c4  _ZTIN10__cxxabiv123__fundamental_type_infoE          
-000032d0  _ZTV10UpdateBase                                     
-000032dc  _ZTV15UpdateBaseEmpty                                
-000032e8  _ZTV8LEDBlink                                        
-000032f4  _ZTS8LEDBlink                                        
-00003300  _ZTI10UpdateBase                                     
-00003308  _ZTISt9type_info                                     
-00003310  _ZTIe                                                
-00003328  _ZTSPKe                                              
-0000335c  __TI_Handler_Table_Base                              
-00003368  __TI_Handler_Table_Limit                             
-00003378  __TI_CINIT_Base                                      
-00003390  __TI_CINIT_Limit                                     
-20000000  g_pfnRAMVectors                                      
-2000026c  __stack                                              
-2000046c  _ZN13UpdateManager5indexE                            
-2000046c  __STACK_END                                          
-2000046c  __STACK_TOP                                          
-20000470  _ZN13UpdateManager11fixedUpdateE                     
-20000474  _ZN13UpdateManager9idCounterE                        
-20000478  _ZN13UpdateManager16timeMilliSecondsE                
-2000047c  _ZN13UpdateManager11timeSecondsE                     
-2000048c  _lock                                                
-20000490  _unlock                                              
-20000494  __TI_cleanup_ptr                                     
-20000498  __TI_dtors_ptr                                       
-2000049c  led                                                  
-200004a0  main_func_sp                                         
-200004a4  _new_handler                                         
-200004a8  _ZN13UpdateManager10customRootE                      
-200004ac  _ZN13UpdateManager9fixedRootE                        
-200004b0  _ZSt16__dummy_typeinfo                               
-200004b4  msUptime                                             
-200004b8  _sys_memory                                          
-ffffffff  __binit__                                            
-ffffffff  __c_args__                                           
-ffffffff  binit                                                
-UNDEFED   SHT$$INIT_ARRAY$$Base                                
-UNDEFED   SHT$$INIT_ARRAY$$Limit                               
+address   name                                                                                                                          
+-------   ----                                                                                                                          
+00000000  __TI_static_base__                                                                                                            
+00000000  g_pfnVectors                                                                                                                  
+00000200  __SYSMEM_SIZE                                                                                                                 
+0000032f  SysCtlSRAMSizeGet                                                                                                             
+00000339  SysCtlFlashSizeGet                                                                                                            
+00000365  SysCtlFlashSectorSizeGet                                                                                                      
+0000038d  SysCtlPeripheralPresent                                                                                                       
+000003cd  SysCtlPeripheralReady                                                                                                         
+00000400  __STACK_SIZE                                                                                                                  
+0000040d  SysCtlPeripheralPowerOn                                                                                                       
+00000449  SysCtlPeripheralPowerOff                                                                                                      
+00000485  SysCtlPeripheralReset                                                                                                         
+0000050d  SysCtlPeripheralEnable                                                                                                        
+00000549  SysCtlPeripheralDisable                                                                                                       
+0000058d  SysCtlPeripheralSleepEnable                                                                                                   
+000005d1  SysCtlPeripheralSleepDisable                                                                                                  
+0000060d  SysCtlPeripheralDeepSleepEnable                                                                                               
+0000065d  SysCtlPeripheralDeepSleepDisable                                                                                              
+000006a5  SysCtlPeripheralClockGating                                                                                                   
+000006f9  SysCtlIntRegister                                                                                                             
+00000711  SysCtlIntUnregister                                                                                                           
+00000721  SysCtlIntEnable                                                                                                               
+00000735  SysCtlIntDisable                                                                                                              
+0000074d  SysCtlIntClear                                                                                                                
+0000075d  SysCtlIntStatus                                                                                                               
+00000779  SysCtlLDOSleepSet                                                                                                             
+00000789  SysCtlLDOSleepGet                                                                                                             
+0000078f  SysCtlLDODeepSleepSet                                                                                                         
+0000079f  SysCtlLDODeepSleepGet                                                                                                         
+000007a5  SysCtlSleepPowerSet                                                                                                           
+000007b9  SysCtlDeepSleepPowerSet                                                                                                       
+000007c9  SysCtlReset                                                                                                                   
+000007d1  SysCtlSleep                                                                                                                   
+000007d9  SysCtlDeepSleep                                                                                                               
+000007f5  SysCtlResetCauseGet                                                                                                           
+000007fb  SysCtlResetCauseClear                                                                                                         
+0000080f  SysCtlMOSCConfigSet                                                                                                           
+00000825  SysCtlPIOSCCalibrate                                                                                                          
+00000875  SysCtlResetBehaviorSet                                                                                                        
+00000885  SysCtlResetBehaviorGet                                                                                                        
+000008d9  SysCtlClockFreqSet                                                                                                            
+00000bf1  SysCtlClockSet                                                                                                                
+00000dbd  SysCtlClockGet                                                                                                                
+00000f69  SysCtlDeepSleepClockSet                                                                                                       
+00000f85  SysCtlDeepSleepClockConfigSet                                                                                                 
+0000100f  SysCtlPWMClockSet                                                                                                             
+00001029  SysCtlPWMClockGet                                                                                                             
+0000103f  SysCtlGPIOAHBEnable                                                                                                           
+0000105b  SysCtlGPIOAHBDisable                                                                                                          
+00001077  SysCtlUSBPLLEnable                                                                                                            
+00001083  SysCtlUSBPLLDisable                                                                                                           
+00001095  SysCtlVoltageEventConfig                                                                                                      
+000010a9  SysCtlVoltageEventStatus                                                                                                      
+000010af  SysCtlVoltageEventClear                                                                                                       
+000010c9  SysCtlNMIStatus                                                                                                               
+000010cf  SysCtlNMIClear                                                                                                                
+000010e3  SysCtlClockOutConfig                                                                                                          
+000010ff  SysCtlAltClkConfig                                                                                                            
+000011bf  GPIODirModeSet                                                                                                                
+0000121b  GPIODirModeGet                                                                                                                
+00001267  GPIOIntTypeSet                                                                                                                
+0000130b  GPIOIntTypeGet                                                                                                                
+000013a9  GPIOPadConfigSet                                                                                                              
+000015e7  GPIOPadConfigGet                                                                                                              
+00001739  GPIOIntEnable                                                                                                                 
+00001753  GPIOIntDisable                                                                                                                
+0000176d  GPIOIntStatus                                                                                                                 
+0000178f  GPIOIntClear                                                                                                                  
+000017a3  GPIOIntRegister                                                                                                               
+000017c1  GPIOIntUnregister                                                                                                             
+000017db  GPIOPinRead                                                                                                                   
+000017f3  GPIOPinWrite                                                                                                                  
+00001813  GPIOPinTypeADC                                                                                                                
+00001837  GPIOPinTypeCAN                                                                                                                
+0000185b  GPIOPinTypeComparator                                                                                                         
+0000187f  GPIOPinTypeComparatorOutput                                                                                                   
+000018a3  GPIOPinTypeEPI                                                                                                                
+000018c7  GPIOPinTypeEthernetLED                                                                                                        
+000018eb  GPIOPinTypeEthernetMII                                                                                                        
+0000190f  GPIOPinTypeGPIOInput                                                                                                          
+00001933  GPIOPinTypeGPIOOutput                                                                                                         
+00001957  GPIOPinTypeGPIOOutputOD                                                                                                       
+0000197b  GPIOPinTypeI2C                                                                                                                
+0000199f  GPIOPinTypeI2CSCL                                                                                                             
+000019c3  GPIOPinTypeLCD                                                                                                                
+000019e7  GPIOPinTypeLPC                                                                                                                
+00001a0b  GPIOPinTypePECIRx                                                                                                             
+00001a2f  GPIOPinTypePECITx                                                                                                             
+00001a53  GPIOPinTypePWM                                                                                                                
+00001a77  GPIOPinTypeQEI                                                                                                                
+00001a9b  GPIOPinTypeSSI                                                                                                                
+00001abf  GPIOPinTypeTimer                                                                                                              
+00001ae3  GPIOPinTypeUART                                                                                                               
+00001b07  GPIOPinTypeUSBAnalog                                                                                                          
+00001b2b  GPIOPinTypeUSBDigital                                                                                                         
+00001b4f  GPIOPinTypeWakeHigh                                                                                                           
+00001b75  GPIOPinTypeWakeLow                                                                                                            
+00001b9b  GPIOPinTypeKBRow                                                                                                              
+00001bbf  GPIOPinTypeKBColumn                                                                                                           
+00001be3  GPIOPinTypeLEDSeq                                                                                                             
+00001c07  GPIOPinTypeCIR                                                                                                                
+00001c2b  GPIOPinWakeStatus                                                                                                             
+00001c3b  GPIOPinConfigure                                                                                                              
+00001c99  GPIODMATriggerEnable                                                                                                          
+00001cb7  GPIODMATriggerDisable                                                                                                         
+00001cd5  GPIOADCTriggerEnable                                                                                                          
+00001cf3  GPIOADCTriggerDisable                                                                                                         
+00001d19  __cxa_bad_typeid                                                                                                              
+000021c7  __derived_to_base_conversion                                                                                                  
+0000223d  __dynamic_cast                                                                                                                
+000022cd  __cxa_bad_cast                                                                                                                
+000022f1  __cxa_type_match                                                                                                              
+00002467  __cxa_get_globals                                                                                                             
+000024a7  __cxa_begin_catch                                                                                                             
+000024e7  _ZSt9terminatev                                                                                                               
+00002525  __cxa_call_terminate                                                                                                          
+00002537  __cxa_throw                                                                                                                   
+00002561  __cxa_rethrow                                                                                                                 
+00002595  __cxa_free_exception                                                                                                          
+000025b7  __cxa_end_catch                                                                                                               
+00002603  __cxa_current_exception_type                                                                                                  
+00002615  _ZSt10unexpectedv                                                                                                             
+00002641  __cxa_allocate_exception                                                                                                      
+000026ad  __cxa_call_unexpected                                                                                                         
+0000277f  __cxa_begin_cleanup                                                                                                           
+00002791  __TI_cxa_end_cleanup                                                                                                          
+0000279d  _ZSt18uncaught_exceptionv                                                                                                     
+000027b3  _ZSt14set_unexpectedPFvvE                                                                                                     
+000027c3  _ZSt13set_terminatePFvvE                                                                                                      
+000027f9  minit                                                                                                                         
+00002887  malloc                                                                                                                        
+000028ef  free                                                                                                                          
+000029b1  realloc                                                                                                                       
+00002abd  memalign                                                                                                                      
+00002ba1  calloc                                                                                                                        
+00002f03  __aeabi_unwind_cpp_pr2                                                                                                        
+00002f0d  __aeabi_unwind_cpp_pr1                                                                                                        
+00002f17  __aeabi_unwind_cpp_pr0                                                                                                        
+00002f21  __TI_Unwind_RaiseException                                                                                                    
+00002f41  _Z26__TI_targ_setup_call_parm0P15_Unwind_Contextj                                                                             
+00002f45  _Z24__TI_targ_regbuf_installP15_Unwind_Context                                                                                
+00002f4d  _Z23__TI_targ_regbuf_set_pcP15_Unwind_Contextj                                                                                
+00002f51  _Z23__TI_targ_regbuf_get_spP15_Unwind_Context                                                                                 
+00002f55  _Z23__TI_targ_regbuf_get_sbP15_Unwind_Context                                                                                 
+00002f59  _Z23__TI_targ_regbuf_get_pcP15_Unwind_Context                                                                                 
+00002f5d  _Z22__TI_targ_rtti_addressjP15_Unwind_Context                                                                                 
+00002f5f  _Z16__TI_targ_set_prP19_Unwind_Exception_s                                                                                    
+00002fab  IntMasterEnable                                                                                                               
+00002fbb  IntMasterDisable                                                                                                              
+00002fcb  IntRegister                                                                                                                   
+0000301d  IntUnregister                                                                                                                 
+00003031  IntPriorityGroupingSet                                                                                                        
+0000304b  IntPriorityGroupingGet                                                                                                        
+00003083  IntPrioritySet                                                                                                                
+000030d3  IntPriorityGet                                                                                                                
+000030f7  IntEnable                                                                                                                     
+00003169  IntDisable                                                                                                                    
+000031db  IntIsEnabled                                                                                                                  
+00003261  IntPendSet                                                                                                                    
+000032d1  IntPendClear                                                                                                                  
+0000331f  IntPriorityMaskSet                                                                                                            
+0000332b  IntPriorityMaskGet                                                                                                            
+00003333  IntTrigger                                                                                                                    
+00003369  UpdateManagerupdateTime                                                                                                       
+00003371  _ZN13UpdateManagerC1Ev                                                                                                        
+00003371  _ZN13UpdateManagerC2Ev                                                                                                        
+0000337d  _ZN13UpdateManager4initEv                                                                                                     
+000033c7  _ZN13UpdateManager8assignIDEv                                                                                                 
+000033d1  _ZN13UpdateManager10updateTimeEv                                                                                              
+0000340f  _ZN13UpdateManager12getTimeMilliEv                                                                                            
+00003415  _ZN13UpdateManager8getTimeSEv                                                                                                 
+0000341b  _ZN13UpdateManager19registerFixedUpdateEP10UpdateBase                                                                         
+00003431  _ZN13UpdateManager21unRegisterFixedUpdateEP10UpdateBase                                                                       
+00003447  _ZN13UpdateManager20registerCustomUpdateEP10UpdateBase                                                                        
+00003465  _ZN13UpdateManager22unRegisterCustomUpdateEP10UpdateBase                                                                      
+0000347b  _ZN13UpdateManager6updateEv                                                                                                   
+0000349f  _ZN13UpdateManager12registerItemEP10UpdateBaseS1_                                                                             
+000034c9  _ZN13UpdateManager14unRegisterItemEP10UpdateBaseS1_                                                                           
+00003537  _ZN13UpdateManager12traverseListEv                                                                                            
+00003551  _ZN13UpdateManager15runFixedUpdatesEv                                                                                         
+00003577  _ZN13UpdateManager16runCustomUpdatesEv                                                                                        
+000035f9  _Z24__TI_process_descriptors13_Unwind_PhaseP19_Unwind_Exception_sP15_Unwind_Context15_Unwind_PR_KindPjP19_Unwind_Reason_CodePb
+0000384f  _ZNSt13bad_exceptionD1Ev                                                                                                      
+00003851  _ZN8LEDBlinkC1Ev                                                                                                              
+00003851  _ZN8LEDBlinkC2Ev                                                                                                              
+0000387d  _ZN8LEDBlink7initLEDEjjj                                                                                                      
+000038b9  _ZN8LEDBlink3offEv                                                                                                            
+000038cf  _ZN8LEDBlink11updateFixedEv                                                                                                   
+0000390f  _ZN8LEDBlink12updateCustomEv                                                                                                  
+000039b9  _Z13__TI_prel2absPKj                                                                                                          
+000039c3  __TI_ut_entry_cmp                                                                                                             
+00003a93  __TI_Unwind_Resume                                                                                                            
+00003acb  __TI_Unwind_RaiseException2                                                                                                   
+00003b11  _ZN10UpdateBaseC1Ev                                                                                                           
+00003b11  _ZN10UpdateBaseC2Ev                                                                                                           
+00003b45  _ZN10UpdateBaseD1Ev                                                                                                           
+00003b45  _ZN10UpdateBaseD2Ev                                                                                                           
+00003b5f  _ZN10UpdateBaseD0Ev                                                                                                           
+00003b75  _ZN10UpdateBase5getIDEv                                                                                                       
+00003b83  _ZN10UpdateBase20registerCustomUpdateEtj                                                                                      
+00003ba1  _ZN10UpdateBase20registerCustomUpdateEv                                                                                       
+00003bb3  _ZN10UpdateBase15setCustomUpdateEtj                                                                                           
+00003bd5  _ZN10UpdateBase11getCustomMSEv                                                                                                
+00003be7  _ZN10UpdateBase10getCustomSEv                                                                                                 
+00003bf5  _ZN10UpdateBase17resetCustomUpdateEv                                                                                          
+00003c0f  _ZN10UpdateBase22unRegisterCustomUpdateEv                                                                                     
+00003c1b  _ZN10UpdateBase19registerFixedUpdateEv                                                                                        
+00003c27  _ZN10UpdateBase21unRegisterFixedUpdateEv                                                                                      
+00003c33  _ZN10UpdateBase13getDelayMilliEv                                                                                              
+00003c3f  _ZN10UpdateBase9getDelaySEv                                                                                                   
+00003c51  _ZSt21__gen_dummy_typeinfosv                                                                                                  
+00003c59  _ZNSt9type_infoD1Ev                                                                                                           
+00003c59  _ZNSt9type_infoD2Ev                                                                                                           
+00003c5b  _ZNSt9type_infoD0Ev                                                                                                           
+00003c63  _ZNSt8bad_castaSERKS_                                                                                                         
+00003c6f  _ZNSt8bad_castD1Ev                                                                                                            
+00003c6f  _ZNSt8bad_castD2Ev                                                                                                            
+00003c71  _ZNSt8bad_castD0Ev                                                                                                            
+00003c79  _ZNSt8bad_castC1Ev                                                                                                            
+00003c79  _ZNSt8bad_castC2Ev                                                                                                            
+00003c87  _ZNSt8bad_castC1ERKS_                                                                                                         
+00003c87  _ZNSt8bad_castC2ERKS_                                                                                                         
+00003c93  _ZNSt10bad_typeidaSERKS_                                                                                                      
+00003c9f  _ZNSt10bad_typeidD1Ev                                                                                                         
+00003c9f  _ZNSt10bad_typeidD2Ev                                                                                                         
+00003ca1  _ZNSt10bad_typeidD0Ev                                                                                                         
+00003ca9  _ZNSt10bad_typeidC1Ev                                                                                                         
+00003ca9  _ZNSt10bad_typeidC2Ev                                                                                                         
+00003cb7  _ZNSt10bad_typeidC1ERKS_                                                                                                      
+00003cb7  _ZNSt10bad_typeidC2ERKS_                                                                                                      
+00003cc3  _ZNKSt9type_info4nameEv                                                                                                       
+00003cc7  _ZNKSt9type_infoneERKS_                                                                                                       
+00003cdd  _ZNKSt9type_infoeqERKS_                                                                                                       
+00003cf3  _ZNKSt9type_info6beforeERKS_                                                                                                  
+00003d01  _ZNKSt8bad_cast4whatEv                                                                                                        
+00003d05  _ZNKSt10bad_typeid4whatEv                                                                                                     
+00003d09  _ZN10__cxxabiv129__pointer_to_member_type_infoD1Ev                                                                            
+00003d09  _ZN10__cxxabiv129__pointer_to_member_type_infoD2Ev                                                                            
+00003d0b  _ZN10__cxxabiv129__pointer_to_member_type_infoD0Ev                                                                            
+00003d13  _ZN10__cxxabiv123__fundamental_type_infoD1Ev                                                                                  
+00003d13  _ZN10__cxxabiv123__fundamental_type_infoD2Ev                                                                                  
+00003d15  _ZN10__cxxabiv123__fundamental_type_infoD0Ev                                                                                  
+00003d1d  _ZN10__cxxabiv121__vmi_class_type_infoD1Ev                                                                                    
+00003d1d  _ZN10__cxxabiv121__vmi_class_type_infoD2Ev                                                                                    
+00003d1f  _ZN10__cxxabiv121__vmi_class_type_infoD0Ev                                                                                    
+00003d27  _ZN10__cxxabiv120__si_class_type_infoD1Ev                                                                                     
+00003d27  _ZN10__cxxabiv120__si_class_type_infoD2Ev                                                                                     
+00003d29  _ZN10__cxxabiv120__si_class_type_infoD0Ev                                                                                     
+00003d31  _ZN10__cxxabiv120__function_type_infoD1Ev                                                                                     
+00003d31  _ZN10__cxxabiv120__function_type_infoD2Ev                                                                                     
+00003d33  _ZN10__cxxabiv120__function_type_infoD0Ev                                                                                     
+00003d3b  _ZN10__cxxabiv119__pointer_type_infoD1Ev                                                                                      
+00003d3b  _ZN10__cxxabiv119__pointer_type_infoD2Ev                                                                                      
+00003d3d  _ZN10__cxxabiv119__pointer_type_infoD0Ev                                                                                      
+00003d45  _ZN10__cxxabiv117__pbase_type_infoD1Ev                                                                                        
+00003d45  _ZN10__cxxabiv117__pbase_type_infoD2Ev                                                                                        
+00003d47  _ZN10__cxxabiv117__pbase_type_infoD0Ev                                                                                        
+00003d4f  _ZN10__cxxabiv117__class_type_infoD1Ev                                                                                        
+00003d4f  _ZN10__cxxabiv117__class_type_infoD2Ev                                                                                        
+00003d51  _ZN10__cxxabiv117__class_type_infoD0Ev                                                                                        
+00003d59  _ZN10__cxxabiv117__array_type_infoD1Ev                                                                                        
+00003d59  _ZN10__cxxabiv117__array_type_infoD2Ev                                                                                        
+00003d5b  _ZN10__cxxabiv117__array_type_infoD0Ev                                                                                        
+00003d63  _ZN10__cxxabiv116__enum_type_infoD1Ev                                                                                         
+00003d63  _ZN10__cxxabiv116__enum_type_infoD2Ev                                                                                         
+00003d65  _ZN10__cxxabiv116__enum_type_infoD0Ev                                                                                         
+00003d89  main                                                                                                                          
+00003e29  __aeabi_memcpy                                                                                                                
+00003e29  __aeabi_memcpy4                                                                                                               
+00003e29  __aeabi_memcpy8                                                                                                               
+00003e29  memcpy                                                                                                                        
+00003ec5  SysTickEnable                                                                                                                 
+00003ed1  SysTickDisable                                                                                                                
+00003edd  SysTickIntRegister                                                                                                            
+00003ef5  SysTickIntUnregister                                                                                                          
+00003f09  SysTickIntEnable                                                                                                              
+00003f15  SysTickIntDisable                                                                                                             
+00003f21  SysTickPeriodSet                                                                                                              
+00003f33  SysTickPeriodGet                                                                                                              
+00003f3b  SysTickValueGet                                                                                                               
+00003f4d  __aeabi_memclr                                                                                                                
+00003f4d  __aeabi_memclr4                                                                                                               
+00003f4d  __aeabi_memclr8                                                                                                               
+00003f4f  __aeabi_memset                                                                                                                
+00003f4f  __aeabi_memset4                                                                                                               
+00003f4f  __aeabi_memset8                                                                                                               
+00003f55  memset                                                                                                                        
+00003fc7  _ZNSt9bad_allocD1Ev                                                                                                           
+00003fc9  __TI_auto_init                                                                                                                
+00004035  _Unwind_RaiseException                                                                                                        
+00004057  _Unwind_Resume                                                                                                                
+0000406d  __TI_Install_CoreRegs                                                                                                         
+00004087  __cxa_end_cleanup                                                                                                             
+00004095  __TI_preserve_low_VFP                                                                                                         
+0000409b  __TI_restore_low_VFP                                                                                                          
+0000410b  _ZNSt9exceptionD1Ev                                                                                                           
+0000410d  _c_int00                                                                                                                      
+0000415d  copy_in                                                                                                                       
+000041a9  bsearch                                                                                                                       
+000041ed  C$$EXIT                                                                                                                       
+000041f1  abort                                                                                                                         
+000041f9  exit                                                                                                                          
+00004231  CPUcpsid                                                                                                                      
+0000423d  CPUprimask                                                                                                                    
+00004247  CPUcpsie                                                                                                                      
+00004253  CPUwfi                                                                                                                        
+00004257  CPUbasepriSet                                                                                                                 
+00004265  CPUbasepriGet                                                                                                                 
+00004271  _Z21__default_new_handlerv                                                                                                    
+000042a1  _ZN10UpdateRootC1Ev                                                                                                           
+000042a1  _ZN10UpdateRootC2Ev                                                                                                           
+000042b5  _ZN10UpdateRoot11updateFixedEv                                                                                                
+000042bf  _ZN10UpdateRoot12updateCustomEv                                                                                               
+000042cd  _Znwj                                                                                                                         
+000042f9  TickCounter                                                                                                                   
+00004301  TickCounterInit                                                                                                               
+00004321  _args_main                                                                                                                    
+00004341  _ZN10UpdateRootD0Ev                                                                                                           
+00004357  _ZN8LEDBlinkD0Ev                                                                                                              
+0000436d  _register_unlock                                                                                                              
+00004373  _register_lock                                                                                                                
+0000437b  _nop                                                                                                                          
+00004381  _ZNSt13bad_exceptionC1EPKc                                                                                                    
+00004391  _ZNSt9bad_allocC1EPKc                                                                                                         
+000043a1  _ZNSt9exceptionC1ERKS_                                                                                                        
+000043b1  _ZN10UpdateRootD1Ev                                                                                                           
+000043bf  _ZN8LEDBlinkD1Ev                                                                                                              
+000043cd  __TI_decompress_none                                                                                                          
+000043dd  _ZNSt9exceptionC1EPKc                                                                                                         
+000043e9  __TI_zero_init                                                                                                                
+000043f5  ResetISR                                                                                                                      
+00004401  _ZdlPv                                                                                                                        
+0000440b  __cxa_pure_virtual                                                                                                            
+00004415  _ZNSt13bad_exceptionD0Ev                                                                                                      
+0000441d  _ZNSt9bad_allocD0Ev                                                                                                           
+00004425  _ZNSt9exceptionD0Ev                                                                                                           
+0000442d  __abort_execution                                                                                                             
+00004435  __tdeh_init                                                                                                                   
+0000443d  SysCtlDelay                                                                                                                   
+00004443  _ZNSt9exceptionaSERKS_                                                                                                        
+00004449  __TI_decompress_rle24                                                                                                         
+0000444f  _ZNKSt9exception4whatEv                                                                                                       
+00004453  _system_pre_init                                                                                                              
+00004930  _ZTSN10__cxxabiv123__fundamental_type_infoE                                                                                   
+00004958  _ZTSN10__cxxabiv121__vmi_class_type_infoE                                                                                     
+0000497e  _ZTSN10__cxxabiv120__si_class_type_infoE                                                                                      
+000049a3  _ZTSN10__cxxabiv119__pointer_type_infoE                                                                                       
+000049c7  _ZTSN10__cxxabiv117__class_type_infoE                                                                                         
+000049e9  _ZTSN10__cxxabiv117__pbase_type_infoE                                                                                         
+00004a0c  _ZTV10UpdateBase                                                                                                              
+00004a24  _ZTV10UpdateRoot                                                                                                              
+00004a3c  _ZTV8LEDBlink                                                                                                                 
+00004a54  _ZTVSt10bad_typeid                                                                                                            
+00004a68  _ZTVSt13bad_exception                                                                                                         
+00004a7c  _ZTVSt8bad_cast                                                                                                               
+00004a90  _ZTVSt9bad_alloc                                                                                                              
+00004aa4  _ZTVSt9exception                                                                                                              
+00004ab8  _ZTSSt13bad_exception                                                                                                         
+00004aca  _ZTSe                                                                                                                         
+00004acc  _ZTIPKe                                                                                                                       
+00004adc  _ZTVN10__cxxabiv117__class_type_infoE                                                                                         
+00004aec  _ZTVN10__cxxabiv119__pointer_type_infoE                                                                                       
+00004afc  _ZTVN10__cxxabiv120__si_class_type_infoE                                                                                      
+00004b0c  _ZTVN10__cxxabiv123__fundamental_type_infoE                                                                                   
+00004b1c  _ZTSSt10bad_typeid                                                                                                            
+00004b2b  _ZTS10UpdateBase                                                                                                              
+00004b38  _ZTS10UpdateRoot                                                                                                              
+00004b45  _ZTSSt9bad_alloc                                                                                                              
+00004b52  _ZTSSt9exception                                                                                                              
+00004b5f  _ZTSSt9type_info                                                                                                              
+00004b6c  _ZTI10UpdateRoot                                                                                                              
+00004b78  _ZTI8LEDBlink                                                                                                                 
+00004b84  _ZTIN10__cxxabiv117__class_type_infoE                                                                                         
+00004b90  _ZTIN10__cxxabiv117__pbase_type_infoE                                                                                         
+00004b9c  _ZTIN10__cxxabiv119__pointer_type_infoE                                                                                       
+00004ba8  _ZTIN10__cxxabiv120__si_class_type_infoE                                                                                      
+00004bb4  _ZTIN10__cxxabiv121__vmi_class_type_infoE                                                                                     
+00004bc0  _ZTIN10__cxxabiv123__fundamental_type_infoE                                                                                   
+00004bcc  _ZTISt10bad_typeid                                                                                                            
+00004bd8  _ZTISt13bad_exception                                                                                                         
+00004be4  _ZTISt8bad_cast                                                                                                               
+00004bf0  _ZTISt9bad_alloc                                                                                                              
+00004bfc  _ZTSSt8bad_cast                                                                                                               
+00004c08  _ZTS8LEDBlink                                                                                                                 
+00004c12  _ZTSv                                                                                                                         
+00004c14  _ZTI10UpdateBase                                                                                                              
+00004c1c  _ZTISt9exception                                                                                                              
+00004c24  _ZTISt9type_info                                                                                                              
+00004c2c  _ZTIe                                                                                                                         
+00004c34  _ZTIv                                                                                                                         
+00004c4c  _ZTSPKe                                                                                                                       
+00004d50  __TI_Handler_Table_Base                                                                                                       
+00004d5c  __TI_Handler_Table_Limit                                                                                                      
+00004d70  __TI_CINIT_Base                                                                                                               
+00004d88  .ARM.exidx$$Base                                                                                                              
+00004d88  __TI_CINIT_Limit                                                                                                              
+00004d88  __TI_UNWIND_TABLE_START                                                                                                       
+00004fb0  .ARM.exidx$$Limit                                                                                                             
+00004fb0  __TI_UNWIND_TABLE_END                                                                                                         
+20000000  g_pfnRAMVectors                                                                                                               
+2000026c  __stack                                                                                                                       
+2000046c  __STACK_TOP                                                                                                                   
+2000066c  _ZSt16__dummy_typeinfo                                                                                                        
+2000066c  __STACK_END                                                                                                                   
+20000670  _sys_memory                                                                                                                   
+20000870  _ZN13UpdateManager5indexE                                                                                                     
+20000874  _ZN13UpdateManager9fixedRootE                                                                                                 
+20000878  _ZN13UpdateManager10customRootE                                                                                               
+2000087c  _ZN13UpdateManager11fixedUpdateE                                                                                              
+2000087d  _ZN13UpdateManager12customUpdateE                                                                                             
+20000880  _ZN13UpdateManager9idCounterE                                                                                                 
+20000884  _ZN13UpdateManager16timeMilliSecondsE                                                                                         
+20000888  _ZN13UpdateManager11timeSecondsE                                                                                              
+20000898  ledRED                                                                                                                        
+2000089c  ledGREEN                                                                                                                      
+200008a0  _lock                                                                                                                         
+200008a4  _unlock                                                                                                                       
+200008a8  __TI_cleanup_ptr                                                                                                              
+200008ac  __TI_dtors_ptr                                                                                                                
+200008b0  main_func_sp                                                                                                                  
+200008b8  _new_handler                                                                                                                  
+ffffffff  __binit__                                                                                                                     
+ffffffff  __c_args__                                                                                                                    
+ffffffff  binit                                                                                                                         
+UNDEFED   SHT$$INIT_ARRAY$$Base                                                                                                         
+UNDEFED   SHT$$INIT_ARRAY$$Limit                                                                                                        
 
-[302 symbols]
+[426 symbols]
